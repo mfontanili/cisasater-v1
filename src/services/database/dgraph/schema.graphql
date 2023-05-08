@@ -1,0 +1,1158 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+directive @search(by: [DgraphIndex!]) on FIELD_DEFINITION
+
+directive @withSubscription on OBJECT | FIELD_DEFINITION | INTERFACE
+
+directive @cacheControl(maxAge: Int!) on QUERY
+
+directive @auth(add: AuthRule, delete: AuthRule, password: AuthRule, query: AuthRule, update: AuthRule) on OBJECT | INTERFACE
+
+directive @remote on OBJECT | INTERFACE | UNION | ENUM | INPUT_OBJECT
+
+directive @remoteResponse(name: String) on FIELD_DEFINITION
+
+directive @cascade(fields: [String]) on FIELD
+
+directive @dgraph(pred: String, type: String) on OBJECT | FIELD_DEFINITION | INTERFACE
+
+directive @id on FIELD_DEFINITION
+
+directive @custom(dql: String, http: CustomHTTP) on FIELD_DEFINITION
+
+directive @lambda on FIELD_DEFINITION
+
+directive @lambdaOnMutate(add: Boolean, delete: Boolean, update: Boolean) on OBJECT | INTERFACE
+
+directive @generate(mutation: GenerateMutationParams, query: GenerateQueryParams, subscription: Boolean) on OBJECT | INTERFACE
+
+directive @hasInverse(field: String!) on FIELD_DEFINITION
+
+directive @secret(field: String!, pred: String) on OBJECT | INTERFACE
+
+type AddAttivitaPayload {
+    attivita(filter: AttivitaFilter, first: Int, offset: Int, order: AttivitaOrder): [Attivita]
+    numUids: Int
+}
+
+type AddCorsiPayload {
+    corsi(filter: CorsiFilter, first: Int, offset: Int, order: CorsiOrder): [Corsi]
+    numUids: Int
+}
+
+type AddGruppiPayload {
+    gruppi(filter: GruppiFilter, first: Int, offset: Int, order: GruppiOrder): [Gruppi]
+    numUids: Int
+}
+
+type AddIstruttoriPayload {
+    istruttori(filter: IstruttoriFilter, first: Int, offset: Int, order: IstruttoriOrder): [Istruttori]
+    numUids: Int
+}
+
+type AddRuoliPayload {
+    numUids: Int
+    ruoli(filter: RuoliFilter, first: Int, offset: Int, order: RuoliOrder): [Ruoli]
+}
+
+type AddTokensPayload {
+    numUids: Int
+    tokens(filter: TokensFilter, first: Int, offset: Int, order: TokensOrder): [Tokens]
+}
+
+type AddUsersPayload {
+    numUids: Int
+    users(filter: UsersFilter, first: Int, offset: Int, order: UsersOrder): [Users]
+}
+
+type Attivita {
+    corso(filter: CorsiFilter): Corsi
+    data_fine: String
+    data_inizio: String!
+    descrizione: String!
+    gruppo(filter: GruppiFilter): Gruppi!
+    id: ID!
+    luogo: String!
+    ruoli(filter: RuoliFilter, first: Int, offset: Int, order: RuoliOrder): [Ruoli]
+    ruoliAggregate(filter: RuoliFilter): RuoliAggregateResult
+    uuid: String!
+}
+
+type AttivitaAggregateResult {
+    count: Int
+    data_fineMax: String
+    data_fineMin: String
+    data_inizioMax: String
+    data_inizioMin: String
+    descrizioneMax: String
+    descrizioneMin: String
+    luogoMax: String
+    luogoMin: String
+    uuidMax: String
+    uuidMin: String
+}
+
+type Corsi {
+    anno: String!
+    descrizione: String!
+    fine_iscrizioni: String
+    gruppo(filter: GruppiFilter): Gruppi!
+    id: ID!
+    inizio_iscrizioni: String
+    moduli(filter: AttivitaFilter, first: Int, offset: Int, order: AttivitaOrder): [Attivita]
+    moduliAggregate(filter: AttivitaFilter): AttivitaAggregateResult
+    quota: String
+    ruoli(filter: RuoliFilter, first: Int, offset: Int, order: RuoliOrder): [Ruoli]
+    ruoliAggregate(filter: RuoliFilter): RuoliAggregateResult
+    specialita: String!
+    uuid: String!
+}
+
+type CorsiAggregateResult {
+    annoMax: String
+    annoMin: String
+    count: Int
+    descrizioneMax: String
+    descrizioneMin: String
+    fine_iscrizioniMax: String
+    fine_iscrizioniMin: String
+    inizio_iscrizioniMax: String
+    inizio_iscrizioniMin: String
+    quotaMax: String
+    quotaMin: String
+    specialitaMax: String
+    specialitaMin: String
+    uuidMax: String
+    uuidMin: String
+}
+
+type DeleteAttivitaPayload {
+    attivita(filter: AttivitaFilter, first: Int, offset: Int, order: AttivitaOrder): [Attivita]
+    msg: String
+    numUids: Int
+}
+
+type DeleteCorsiPayload {
+    corsi(filter: CorsiFilter, first: Int, offset: Int, order: CorsiOrder): [Corsi]
+    msg: String
+    numUids: Int
+}
+
+type DeleteGruppiPayload {
+    gruppi(filter: GruppiFilter, first: Int, offset: Int, order: GruppiOrder): [Gruppi]
+    msg: String
+    numUids: Int
+}
+
+type DeleteIstruttoriPayload {
+    istruttori(filter: IstruttoriFilter, first: Int, offset: Int, order: IstruttoriOrder): [Istruttori]
+    msg: String
+    numUids: Int
+}
+
+type DeleteRuoliPayload {
+    msg: String
+    numUids: Int
+    ruoli(filter: RuoliFilter, first: Int, offset: Int, order: RuoliOrder): [Ruoli]
+}
+
+type DeleteTokensPayload {
+    msg: String
+    numUids: Int
+    tokens(filter: TokensFilter, first: Int, offset: Int, order: TokensOrder): [Tokens]
+}
+
+type DeleteUsersPayload {
+    msg: String
+    numUids: Int
+    users(filter: UsersFilter, first: Int, offset: Int, order: UsersOrder): [Users]
+}
+
+type Gruppi {
+    ambito: String
+    id: ID!
+    istruttori(filter: IstruttoriFilter, first: Int, offset: Int, order: IstruttoriOrder): [Istruttori]
+    istruttoriAggregate(filter: IstruttoriFilter): IstruttoriAggregateResult
+    nome: String!
+    note: String
+    ruoli(filter: RuoliFilter, first: Int, offset: Int, order: RuoliOrder): [Ruoli]
+    ruoliAggregate(filter: RuoliFilter): RuoliAggregateResult
+    sezioni: [String]
+    tipo: String
+    uuid: String!
+}
+
+type GruppiAggregateResult {
+    ambitoMax: String
+    ambitoMin: String
+    count: Int
+    nomeMax: String
+    nomeMin: String
+    noteMax: String
+    noteMin: String
+    tipoMax: String
+    tipoMin: String
+    uuidMax: String
+    uuidMin: String
+}
+
+type Istruttori {
+    bollino: String
+    cellulare: String
+    codice_fiscale: String!
+    cognome: String!
+    data_nascita: String
+    email: String!
+    iban: String
+    id: ID!
+    nome: String!
+    note: String
+    ruoli(filter: RuoliFilter, first: Int, offset: Int, order: RuoliOrder): [Ruoli]
+    ruoliAggregate(filter: RuoliFilter): RuoliAggregateResult
+    scuola(filter: GruppiFilter): Gruppi
+    sezione: String
+    specialita: [String]
+    stato: String
+    titoli: [String]
+    uuid: String!
+}
+
+type IstruttoriAggregateResult {
+    bollinoMax: String
+    bollinoMin: String
+    cellulareMax: String
+    cellulareMin: String
+    codice_fiscaleMax: String
+    codice_fiscaleMin: String
+    cognomeMax: String
+    cognomeMin: String
+    count: Int
+    data_nascitaMax: String
+    data_nascitaMin: String
+    emailMax: String
+    emailMin: String
+    ibanMax: String
+    ibanMin: String
+    nomeMax: String
+    nomeMin: String
+    noteMax: String
+    noteMin: String
+    sezioneMax: String
+    sezioneMin: String
+    statoMax: String
+    statoMin: String
+    uuidMax: String
+    uuidMin: String
+}
+
+type MultiPolygon {
+    polygons: [Polygon!]!
+}
+
+type Mutation {
+    addAttivita(input: [AddAttivitaInput!]!, upsert: Boolean): AddAttivitaPayload
+    addCorsi(input: [AddCorsiInput!]!, upsert: Boolean): AddCorsiPayload
+    addGruppi(input: [AddGruppiInput!]!, upsert: Boolean): AddGruppiPayload
+    addIstruttori(input: [AddIstruttoriInput!]!, upsert: Boolean): AddIstruttoriPayload
+    addRuoli(input: [AddRuoliInput!]!): AddRuoliPayload
+    addTokens(input: [AddTokensInput!]!, upsert: Boolean): AddTokensPayload
+    addUsers(input: [AddUsersInput!]!, upsert: Boolean): AddUsersPayload
+    deleteAttivita(filter: AttivitaFilter!): DeleteAttivitaPayload
+    deleteCorsi(filter: CorsiFilter!): DeleteCorsiPayload
+    deleteGruppi(filter: GruppiFilter!): DeleteGruppiPayload
+    deleteIstruttori(filter: IstruttoriFilter!): DeleteIstruttoriPayload
+    deleteRuoli(filter: RuoliFilter!): DeleteRuoliPayload
+    deleteTokens(filter: TokensFilter!): DeleteTokensPayload
+    deleteUsers(filter: UsersFilter!): DeleteUsersPayload
+    updateAttivita(input: UpdateAttivitaInput!): UpdateAttivitaPayload
+    updateCorsi(input: UpdateCorsiInput!): UpdateCorsiPayload
+    updateGruppi(input: UpdateGruppiInput!): UpdateGruppiPayload
+    updateIstruttori(input: UpdateIstruttoriInput!): UpdateIstruttoriPayload
+    updateRuoli(input: UpdateRuoliInput!): UpdateRuoliPayload
+    updateTokens(input: UpdateTokensInput!): UpdateTokensPayload
+    updateUsers(input: UpdateUsersInput!): UpdateUsersPayload
+}
+
+type Point {
+    latitude: Float!
+    longitude: Float!
+}
+
+type PointList {
+    points: [Point!]!
+}
+
+type Polygon {
+    coordinates: [PointList!]!
+}
+
+type Query {
+    aggregateAttivita(filter: AttivitaFilter): AttivitaAggregateResult
+    aggregateCorsi(filter: CorsiFilter): CorsiAggregateResult
+    aggregateGruppi(filter: GruppiFilter): GruppiAggregateResult
+    aggregateIstruttori(filter: IstruttoriFilter): IstruttoriAggregateResult
+    aggregateRuoli(filter: RuoliFilter): RuoliAggregateResult
+    aggregateTokens(filter: TokensFilter): TokensAggregateResult
+    aggregateUsers(filter: UsersFilter): UsersAggregateResult
+    getAttivita(id: ID, uuid: String): Attivita
+    getCorsi(id: ID, uuid: String): Corsi
+    getGruppi(id: ID, uuid: String): Gruppi
+    getIstruttori(id: ID, uuid: String): Istruttori
+    getRuoli(id: ID!): Ruoli
+    getTokens(identifier: String, token: String): Tokens
+    getUsers(id: ID, uuid: String): Users
+    queryAttivita(filter: AttivitaFilter, first: Int, offset: Int, order: AttivitaOrder): [Attivita]
+    queryCorsi(filter: CorsiFilter, first: Int, offset: Int, order: CorsiOrder): [Corsi]
+    queryGruppi(filter: GruppiFilter, first: Int, offset: Int, order: GruppiOrder): [Gruppi]
+    queryIstruttori(filter: IstruttoriFilter, first: Int, offset: Int, order: IstruttoriOrder): [Istruttori]
+    queryRuoli(filter: RuoliFilter, first: Int, offset: Int, order: RuoliOrder): [Ruoli]
+    queryTokens(filter: TokensFilter, first: Int, offset: Int, order: TokensOrder): [Tokens]
+    queryUsers(filter: UsersFilter, first: Int, offset: Int, order: UsersOrder): [Users]
+}
+
+type Ruoli {
+    attivita(filter: AttivitaFilter): Attivita
+    corso(filter: CorsiFilter): Corsi
+    gruppo(filter: GruppiFilter): Gruppi
+    id: ID!
+    istruttore(filter: IstruttoriFilter): Istruttori
+    profilo: String
+    user(filter: UsersFilter): Users
+}
+
+type RuoliAggregateResult {
+    count: Int
+    profiloMax: String
+    profiloMin: String
+}
+
+type Tokens {
+    expires: DateTime
+    identifier: String!
+    token: String!
+}
+
+type TokensAggregateResult {
+    count: Int
+    expiresMax: DateTime
+    expiresMin: DateTime
+    identifierMax: String
+    identifierMin: String
+    tokenMax: String
+    tokenMin: String
+}
+
+type UpdateAttivitaPayload {
+    attivita(filter: AttivitaFilter, first: Int, offset: Int, order: AttivitaOrder): [Attivita]
+    numUids: Int
+}
+
+type UpdateCorsiPayload {
+    corsi(filter: CorsiFilter, first: Int, offset: Int, order: CorsiOrder): [Corsi]
+    numUids: Int
+}
+
+type UpdateGruppiPayload {
+    gruppi(filter: GruppiFilter, first: Int, offset: Int, order: GruppiOrder): [Gruppi]
+    numUids: Int
+}
+
+type UpdateIstruttoriPayload {
+    istruttori(filter: IstruttoriFilter, first: Int, offset: Int, order: IstruttoriOrder): [Istruttori]
+    numUids: Int
+}
+
+type UpdateRuoliPayload {
+    numUids: Int
+    ruoli(filter: RuoliFilter, first: Int, offset: Int, order: RuoliOrder): [Ruoli]
+}
+
+type UpdateTokensPayload {
+    numUids: Int
+    tokens(filter: TokensFilter, first: Int, offset: Int, order: TokensOrder): [Tokens]
+}
+
+type UpdateUsersPayload {
+    numUids: Int
+    users(filter: UsersFilter, first: Int, offset: Int, order: UsersOrder): [Users]
+}
+
+type Users {
+    email: String
+    id: ID!
+    istruttore(filter: IstruttoriFilter): Istruttori
+    nome: String!
+    password: String
+    ruoli(filter: RuoliFilter, first: Int, offset: Int, order: RuoliOrder): [Ruoli]
+    ruoliAggregate(filter: RuoliFilter): RuoliAggregateResult
+    username: String!
+    uuid: String!
+}
+
+type UsersAggregateResult {
+    count: Int
+    emailMax: String
+    emailMin: String
+    nomeMax: String
+    nomeMin: String
+    passwordMax: String
+    passwordMin: String
+    usernameMax: String
+    usernameMin: String
+    uuidMax: String
+    uuidMin: String
+}
+
+enum AttivitaHasFilter {
+    corso
+    data_fine
+    data_inizio
+    descrizione
+    gruppo
+    luogo
+    ruoli
+    uuid
+}
+
+enum AttivitaOrderable {
+    data_fine
+    data_inizio
+    descrizione
+    luogo
+    uuid
+}
+
+enum CorsiHasFilter {
+    anno
+    descrizione
+    fine_iscrizioni
+    gruppo
+    inizio_iscrizioni
+    moduli
+    quota
+    ruoli
+    specialita
+    uuid
+}
+
+enum CorsiOrderable {
+    anno
+    descrizione
+    fine_iscrizioni
+    inizio_iscrizioni
+    quota
+    specialita
+    uuid
+}
+
+enum DgraphIndex {
+    bool
+    day
+    exact
+    float
+    fulltext
+    geo
+    hash
+    hour
+    int
+    int64
+    month
+    regexp
+    term
+    trigram
+    year
+}
+
+enum GruppiHasFilter {
+    ambito
+    istruttori
+    nome
+    note
+    ruoli
+    sezioni
+    tipo
+    uuid
+}
+
+enum GruppiOrderable {
+    ambito
+    nome
+    note
+    tipo
+    uuid
+}
+
+enum HTTPMethod {
+    DELETE
+    GET
+    PATCH
+    POST
+    PUT
+}
+
+enum IstruttoriHasFilter {
+    bollino
+    cellulare
+    codice_fiscale
+    cognome
+    data_nascita
+    email
+    iban
+    nome
+    note
+    ruoli
+    scuola
+    sezione
+    specialita
+    stato
+    titoli
+    uuid
+}
+
+enum IstruttoriOrderable {
+    bollino
+    cellulare
+    codice_fiscale
+    cognome
+    data_nascita
+    email
+    iban
+    nome
+    note
+    sezione
+    stato
+    uuid
+}
+
+enum Mode {
+    BATCH
+    SINGLE
+}
+
+enum RuoliHasFilter {
+    attivita
+    corso
+    gruppo
+    istruttore
+    profilo
+    user
+}
+
+enum RuoliOrderable {
+    profilo
+}
+
+enum TokensHasFilter {
+    expires
+    identifier
+    token
+}
+
+enum TokensOrderable {
+    expires
+    identifier
+    token
+}
+
+enum UsersHasFilter {
+    email
+    istruttore
+    nome
+    password
+    ruoli
+    username
+    uuid
+}
+
+enum UsersOrderable {
+    email
+    nome
+    password
+    username
+    uuid
+}
+
+"""
+
+The DateTime scalar type represents date and time as a string in RFC3339 format.
+For example: "1985-04-12T23:20:50.52Z" represents 20 minutes and 50.52 seconds after the 23rd hour of April 12th, 1985 in UTC.
+"""
+scalar DateTime
+
+"""
+
+The Int64 scalar type represents a signed 64‐bit numeric non‐fractional value.
+Int64 can represent values in range [-(2^63),(2^63 - 1)].
+"""
+scalar Int64
+
+input AddAttivitaInput {
+    corso: CorsiRef
+    data_fine: String
+    data_inizio: String!
+    descrizione: String!
+    gruppo: GruppiRef!
+    luogo: String!
+    ruoli: [RuoliRef]
+    uuid: String!
+}
+
+input AddCorsiInput {
+    anno: String!
+    descrizione: String!
+    fine_iscrizioni: String
+    gruppo: GruppiRef!
+    inizio_iscrizioni: String
+    moduli: [AttivitaRef]
+    quota: String
+    ruoli: [RuoliRef]
+    specialita: String!
+    uuid: String!
+}
+
+input AddGruppiInput {
+    ambito: String
+    istruttori: [IstruttoriRef]
+    nome: String!
+    note: String
+    ruoli: [RuoliRef]
+    sezioni: [String]
+    tipo: String
+    uuid: String!
+}
+
+input AddIstruttoriInput {
+    bollino: String
+    cellulare: String
+    codice_fiscale: String!
+    cognome: String!
+    data_nascita: String
+    email: String!
+    iban: String
+    nome: String!
+    note: String
+    ruoli: [RuoliRef]
+    scuola: GruppiRef
+    sezione: String
+    specialita: [String]
+    stato: String
+    titoli: [String]
+    uuid: String!
+}
+
+input AddRuoliInput {
+    attivita: AttivitaRef
+    corso: CorsiRef
+    gruppo: GruppiRef
+    istruttore: IstruttoriRef
+    profilo: String
+    user: UsersRef
+}
+
+input AddTokensInput {
+    expires: DateTime
+    identifier: String!
+    token: String!
+}
+
+input AddUsersInput {
+    email: String
+    istruttore: IstruttoriRef
+    nome: String!
+    password: String
+    ruoli: [RuoliRef]
+    username: String!
+    uuid: String!
+}
+
+input AttivitaFilter {
+    and: [AttivitaFilter]
+    has: [AttivitaHasFilter]
+    id: [ID!]
+    not: AttivitaFilter
+    or: [AttivitaFilter]
+    uuid: StringHashFilter
+}
+
+input AttivitaOrder {
+    asc: AttivitaOrderable
+    desc: AttivitaOrderable
+    then: AttivitaOrder
+}
+
+input AttivitaPatch {
+    corso: CorsiRef
+    data_fine: String
+    data_inizio: String
+    descrizione: String
+    gruppo: GruppiRef
+    luogo: String
+    ruoli: [RuoliRef]
+}
+
+input AttivitaRef {
+    corso: CorsiRef
+    data_fine: String
+    data_inizio: String
+    descrizione: String
+    gruppo: GruppiRef
+    id: ID
+    luogo: String
+    ruoli: [RuoliRef]
+    uuid: String
+}
+
+input AuthRule {
+    and: [AuthRule]
+    not: AuthRule
+    or: [AuthRule]
+    rule: String
+}
+
+input ContainsFilter {
+    point: PointRef
+    polygon: PolygonRef
+}
+
+input CorsiFilter {
+    and: [CorsiFilter]
+    has: [CorsiHasFilter]
+    id: [ID!]
+    not: CorsiFilter
+    or: [CorsiFilter]
+    uuid: StringHashFilter
+}
+
+input CorsiOrder {
+    asc: CorsiOrderable
+    desc: CorsiOrderable
+    then: CorsiOrder
+}
+
+input CorsiPatch {
+    anno: String
+    descrizione: String
+    fine_iscrizioni: String
+    gruppo: GruppiRef
+    inizio_iscrizioni: String
+    moduli: [AttivitaRef]
+    quota: String
+    ruoli: [RuoliRef]
+    specialita: String
+}
+
+input CorsiRef {
+    anno: String
+    descrizione: String
+    fine_iscrizioni: String
+    gruppo: GruppiRef
+    id: ID
+    inizio_iscrizioni: String
+    moduli: [AttivitaRef]
+    quota: String
+    ruoli: [RuoliRef]
+    specialita: String
+    uuid: String
+}
+
+input CustomHTTP {
+    body: String
+    forwardHeaders: [String!]
+    graphql: String
+    introspectionHeaders: [String!]
+    method: HTTPMethod!
+    mode: Mode
+    secretHeaders: [String!]
+    skipIntrospection: Boolean
+    url: String!
+}
+
+input DateTimeFilter {
+    between: DateTimeRange
+    eq: DateTime
+    ge: DateTime
+    gt: DateTime
+    in: [DateTime]
+    le: DateTime
+    lt: DateTime
+}
+
+input DateTimeRange {
+    max: DateTime!
+    min: DateTime!
+}
+
+input FloatFilter {
+    between: FloatRange
+    eq: Float
+    ge: Float
+    gt: Float
+    in: [Float]
+    le: Float
+    lt: Float
+}
+
+input FloatRange {
+    max: Float!
+    min: Float!
+}
+
+input GenerateMutationParams {
+    add: Boolean
+    delete: Boolean
+    update: Boolean
+}
+
+input GenerateQueryParams {
+    aggregate: Boolean
+    get: Boolean
+    password: Boolean
+    query: Boolean
+}
+
+input GruppiFilter {
+    ambito: StringExactFilter
+    and: [GruppiFilter]
+    has: [GruppiHasFilter]
+    id: [ID!]
+    nome: StringExactFilter
+    not: GruppiFilter
+    or: [GruppiFilter]
+    tipo: StringExactFilter
+    uuid: StringHashFilter
+}
+
+input GruppiOrder {
+    asc: GruppiOrderable
+    desc: GruppiOrderable
+    then: GruppiOrder
+}
+
+input GruppiPatch {
+    ambito: String
+    istruttori: [IstruttoriRef]
+    nome: String
+    note: String
+    ruoli: [RuoliRef]
+    sezioni: [String]
+    tipo: String
+}
+
+input GruppiRef {
+    ambito: String
+    id: ID
+    istruttori: [IstruttoriRef]
+    nome: String
+    note: String
+    ruoli: [RuoliRef]
+    sezioni: [String]
+    tipo: String
+    uuid: String
+}
+
+input Int64Filter {
+    between: Int64Range
+    eq: Int64
+    ge: Int64
+    gt: Int64
+    in: [Int64]
+    le: Int64
+    lt: Int64
+}
+
+input Int64Range {
+    max: Int64!
+    min: Int64!
+}
+
+input IntFilter {
+    between: IntRange
+    eq: Int
+    ge: Int
+    gt: Int
+    in: [Int]
+    le: Int
+    lt: Int
+}
+
+input IntRange {
+    max: Int!
+    min: Int!
+}
+
+input IntersectsFilter {
+    multiPolygon: MultiPolygonRef
+    polygon: PolygonRef
+}
+
+input IstruttoriFilter {
+    and: [IstruttoriFilter]
+    codice_fiscale: StringExactFilter
+    cognome: StringExactFilter
+    email: StringExactFilter
+    has: [IstruttoriHasFilter]
+    id: [ID!]
+    nome: StringExactFilter
+    not: IstruttoriFilter
+    or: [IstruttoriFilter]
+    stato: StringExactFilter
+    titoli: StringHashFilter
+    uuid: StringHashFilter
+}
+
+input IstruttoriOrder {
+    asc: IstruttoriOrderable
+    desc: IstruttoriOrderable
+    then: IstruttoriOrder
+}
+
+input IstruttoriPatch {
+    bollino: String
+    cellulare: String
+    codice_fiscale: String
+    cognome: String
+    data_nascita: String
+    email: String
+    iban: String
+    nome: String
+    note: String
+    ruoli: [RuoliRef]
+    scuola: GruppiRef
+    sezione: String
+    specialita: [String]
+    stato: String
+    titoli: [String]
+}
+
+input IstruttoriRef {
+    bollino: String
+    cellulare: String
+    codice_fiscale: String
+    cognome: String
+    data_nascita: String
+    email: String
+    iban: String
+    id: ID
+    nome: String
+    note: String
+    ruoli: [RuoliRef]
+    scuola: GruppiRef
+    sezione: String
+    specialita: [String]
+    stato: String
+    titoli: [String]
+    uuid: String
+}
+
+input MultiPolygonRef {
+    polygons: [PolygonRef!]!
+}
+
+input NearFilter {
+    coordinate: PointRef!
+    distance: Float!
+}
+
+input PointGeoFilter {
+    near: NearFilter
+    within: WithinFilter
+}
+
+input PointListRef {
+    points: [PointRef!]!
+}
+
+input PointRef {
+    latitude: Float!
+    longitude: Float!
+}
+
+input PolygonGeoFilter {
+    contains: ContainsFilter
+    intersects: IntersectsFilter
+    near: NearFilter
+    within: WithinFilter
+}
+
+input PolygonRef {
+    coordinates: [PointListRef!]!
+}
+
+input RuoliFilter {
+    and: [RuoliFilter]
+    has: [RuoliHasFilter]
+    id: [ID!]
+    not: RuoliFilter
+    or: [RuoliFilter]
+}
+
+input RuoliOrder {
+    asc: RuoliOrderable
+    desc: RuoliOrderable
+    then: RuoliOrder
+}
+
+input RuoliPatch {
+    attivita: AttivitaRef
+    corso: CorsiRef
+    gruppo: GruppiRef
+    istruttore: IstruttoriRef
+    profilo: String
+    user: UsersRef
+}
+
+input RuoliRef {
+    attivita: AttivitaRef
+    corso: CorsiRef
+    gruppo: GruppiRef
+    id: ID
+    istruttore: IstruttoriRef
+    profilo: String
+    user: UsersRef
+}
+
+input StringExactFilter {
+    between: StringRange
+    eq: String
+    ge: String
+    gt: String
+    in: [String]
+    le: String
+    lt: String
+}
+
+input StringFullTextFilter {
+    alloftext: String
+    anyoftext: String
+}
+
+input StringHashFilter {
+    eq: String
+    in: [String]
+}
+
+input StringRange {
+    max: String!
+    min: String!
+}
+
+input StringRegExpFilter {
+    regexp: String
+}
+
+input StringTermFilter {
+    allofterms: String
+    anyofterms: String
+}
+
+input TokensFilter {
+    and: [TokensFilter]
+    has: [TokensHasFilter]
+    identifier: StringHashFilter
+    not: TokensFilter
+    or: [TokensFilter]
+    token: StringHashFilter
+}
+
+input TokensOrder {
+    asc: TokensOrderable
+    desc: TokensOrderable
+    then: TokensOrder
+}
+
+input TokensPatch {
+    expires: DateTime
+}
+
+input TokensRef {
+    expires: DateTime
+    identifier: String
+    token: String
+}
+
+input UpdateAttivitaInput {
+    filter: AttivitaFilter!
+    remove: AttivitaPatch
+    set: AttivitaPatch
+}
+
+input UpdateCorsiInput {
+    filter: CorsiFilter!
+    remove: CorsiPatch
+    set: CorsiPatch
+}
+
+input UpdateGruppiInput {
+    filter: GruppiFilter!
+    remove: GruppiPatch
+    set: GruppiPatch
+}
+
+input UpdateIstruttoriInput {
+    filter: IstruttoriFilter!
+    remove: IstruttoriPatch
+    set: IstruttoriPatch
+}
+
+input UpdateRuoliInput {
+    filter: RuoliFilter!
+    remove: RuoliPatch
+    set: RuoliPatch
+}
+
+input UpdateTokensInput {
+    filter: TokensFilter!
+    remove: TokensPatch
+    set: TokensPatch
+}
+
+input UpdateUsersInput {
+    filter: UsersFilter!
+    remove: UsersPatch
+    set: UsersPatch
+}
+
+input UsersFilter {
+    and: [UsersFilter]
+    has: [UsersHasFilter]
+    id: [ID!]
+    not: UsersFilter
+    or: [UsersFilter]
+    username: StringExactFilter
+    uuid: StringHashFilter
+}
+
+input UsersOrder {
+    asc: UsersOrderable
+    desc: UsersOrderable
+    then: UsersOrder
+}
+
+input UsersPatch {
+    email: String
+    istruttore: IstruttoriRef
+    nome: String
+    password: String
+    ruoli: [RuoliRef]
+    username: String
+}
+
+input UsersRef {
+    email: String
+    id: ID
+    istruttore: IstruttoriRef
+    nome: String
+    password: String
+    ruoli: [RuoliRef]
+    username: String
+    uuid: String
+}
+
+input WithinFilter {
+    polygon: PolygonRef!
+}

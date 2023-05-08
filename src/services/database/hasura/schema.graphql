@@ -1,0 +1,3859 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: query_root
+    mutation: mutation_root
+    subscription: subscription_root
+}
+
+"whether this query should be cached (Hasura Cloud only)"
+directive @cached(
+    "refresh the cache entry"
+    refresh: Boolean! = false,
+    "measured in seconds"
+    ttl: Int! = 60
+) on QUERY
+
+"columns and relationships of \"attivita\""
+type attivita {
+    "An object relationship"
+    corso: corsi!
+    corso_id: uuid!
+    data_fine: String!
+    data_inizio: String!
+    descrizione: String!
+    "An object relationship"
+    gruppo: gruppi!
+    gruppo_id: uuid!
+    id: uuid!
+    luogo: String!
+    "An array relationship"
+    ruoli(
+        "distinct select on columns"
+        distinct_on: [ruoli_attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_attivita_order_by!],
+        "filter the rows returned"
+        where: ruoli_attivita_bool_exp
+    ): [ruoli_attivita!]!
+    "An aggregate relationship"
+    ruoli_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_attivita_order_by!],
+        "filter the rows returned"
+        where: ruoli_attivita_bool_exp
+    ): ruoli_attivita_aggregate!
+}
+
+"aggregated selection of \"attivita\""
+type attivita_aggregate {
+    aggregate: attivita_aggregate_fields
+    nodes: [attivita!]!
+}
+
+"aggregate fields of \"attivita\""
+type attivita_aggregate_fields {
+    count(columns: [attivita_select_column!], distinct: Boolean): Int!
+    max: attivita_max_fields
+    min: attivita_min_fields
+}
+
+"aggregate max on columns"
+type attivita_max_fields {
+    corso_id: uuid
+    data_fine: String
+    data_inizio: String
+    descrizione: String
+    gruppo_id: uuid
+    id: uuid
+    luogo: String
+}
+
+"aggregate min on columns"
+type attivita_min_fields {
+    corso_id: uuid
+    data_fine: String
+    data_inizio: String
+    descrizione: String
+    gruppo_id: uuid
+    id: uuid
+    luogo: String
+}
+
+"response of any mutation on the table \"attivita\""
+type attivita_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [attivita!]!
+}
+
+"columns and relationships of \"corsi\""
+type corsi {
+    anno: String!
+    descrizione: String!
+    fine_iscrizioni: String!
+    id: uuid!
+    inizio_iscrizioni: String!
+    "An object relationship"
+    moduli: attivita
+    quota: String!
+    "An array relationship"
+    ruoli(
+        "distinct select on columns"
+        distinct_on: [ruoli_corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_corsi_order_by!],
+        "filter the rows returned"
+        where: ruoli_corsi_bool_exp
+    ): [ruoli_corsi!]!
+    "An aggregate relationship"
+    ruoli_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_corsi_order_by!],
+        "filter the rows returned"
+        where: ruoli_corsi_bool_exp
+    ): ruoli_corsi_aggregate!
+    specialita: String!
+}
+
+"aggregated selection of \"corsi\""
+type corsi_aggregate {
+    aggregate: corsi_aggregate_fields
+    nodes: [corsi!]!
+}
+
+"aggregate fields of \"corsi\""
+type corsi_aggregate_fields {
+    count(columns: [corsi_select_column!], distinct: Boolean): Int!
+    max: corsi_max_fields
+    min: corsi_min_fields
+}
+
+"aggregate max on columns"
+type corsi_max_fields {
+    anno: String
+    descrizione: String
+    fine_iscrizioni: String
+    id: uuid
+    inizio_iscrizioni: String
+    quota: String
+    specialita: String
+}
+
+"aggregate min on columns"
+type corsi_min_fields {
+    anno: String
+    descrizione: String
+    fine_iscrizioni: String
+    id: uuid
+    inizio_iscrizioni: String
+    quota: String
+    specialita: String
+}
+
+"response of any mutation on the table \"corsi\""
+type corsi_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [corsi!]!
+}
+
+"columns and relationships of \"gruppi\""
+type gruppi {
+    ambito: String!
+    "An array relationship"
+    attivita(
+        "distinct select on columns"
+        distinct_on: [attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [attivita_order_by!],
+        "filter the rows returned"
+        where: attivita_bool_exp
+    ): [attivita!]!
+    "An aggregate relationship"
+    attivita_aggregate(
+        "distinct select on columns"
+        distinct_on: [attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [attivita_order_by!],
+        "filter the rows returned"
+        where: attivita_bool_exp
+    ): attivita_aggregate!
+    created_at: timestamptz
+    deleted_at: timestamptz
+    id: uuid!
+    nome: String!
+    "An array relationship"
+    ruoli(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): [ruoli_gruppi!]!
+    "An aggregate relationship"
+    ruoli_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): ruoli_gruppi_aggregate!
+    sezioni_cai(
+        "JSON select path"
+        path: String
+    ): jsonb
+    tipo: String!
+    updated_at: timestamptz
+}
+
+"aggregated selection of \"gruppi\""
+type gruppi_aggregate {
+    aggregate: gruppi_aggregate_fields
+    nodes: [gruppi!]!
+}
+
+"aggregate fields of \"gruppi\""
+type gruppi_aggregate_fields {
+    count(columns: [gruppi_select_column!], distinct: Boolean): Int!
+    max: gruppi_max_fields
+    min: gruppi_min_fields
+}
+
+"aggregate max on columns"
+type gruppi_max_fields {
+    ambito: String
+    created_at: timestamptz
+    deleted_at: timestamptz
+    id: uuid
+    nome: String
+    tipo: String
+    updated_at: timestamptz
+}
+
+"aggregate min on columns"
+type gruppi_min_fields {
+    ambito: String
+    created_at: timestamptz
+    deleted_at: timestamptz
+    id: uuid
+    nome: String
+    tipo: String
+    updated_at: timestamptz
+}
+
+"response of any mutation on the table \"gruppi\""
+type gruppi_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [gruppi!]!
+}
+
+"columns and relationships of \"istruttori\""
+type istruttori {
+    "An array relationship"
+    attivita(
+        "distinct select on columns"
+        distinct_on: [ruoli_attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_attivita_order_by!],
+        "filter the rows returned"
+        where: ruoli_attivita_bool_exp
+    ): [ruoli_attivita!]!
+    "An aggregate relationship"
+    attivita_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_attivita_order_by!],
+        "filter the rows returned"
+        where: ruoli_attivita_bool_exp
+    ): ruoli_attivita_aggregate!
+    bollino: String!
+    cellulare: String
+    codice_fiscale: String!
+    cognome: String!
+    "An array relationship"
+    corsi(
+        "distinct select on columns"
+        distinct_on: [ruoli_corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_corsi_order_by!],
+        "filter the rows returned"
+        where: ruoli_corsi_bool_exp
+    ): [ruoli_corsi!]!
+    "An aggregate relationship"
+    corsi_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_corsi_order_by!],
+        "filter the rows returned"
+        where: ruoli_corsi_bool_exp
+    ): ruoli_corsi_aggregate!
+    created_at: timestamptz
+    data_nascita: String
+    deleted_at: timestamptz
+    email: String!
+    iban: String
+    id: uuid!
+    nome: String!
+    note: String
+    "An array relationship"
+    ruoli(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): [ruoli_gruppi!]!
+    "An aggregate relationship"
+    ruoli_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): ruoli_gruppi_aggregate!
+    sezione_cai: String
+    specialita(
+        "JSON select path"
+        path: String
+    ): jsonb
+    stato: String!
+    titoli(
+        "JSON select path"
+        path: String
+    ): jsonb
+    updated_at: timestamptz
+    "An object relationship"
+    user: users
+}
+
+"aggregated selection of \"istruttori\""
+type istruttori_aggregate {
+    aggregate: istruttori_aggregate_fields
+    nodes: [istruttori!]!
+}
+
+"aggregate fields of \"istruttori\""
+type istruttori_aggregate_fields {
+    count(columns: [istruttori_select_column!], distinct: Boolean): Int!
+    max: istruttori_max_fields
+    min: istruttori_min_fields
+}
+
+"aggregate max on columns"
+type istruttori_max_fields {
+    bollino: String
+    cellulare: String
+    codice_fiscale: String
+    cognome: String
+    created_at: timestamptz
+    data_nascita: String
+    deleted_at: timestamptz
+    email: String
+    iban: String
+    id: uuid
+    nome: String
+    note: String
+    sezione_cai: String
+    stato: String
+    updated_at: timestamptz
+}
+
+"aggregate min on columns"
+type istruttori_min_fields {
+    bollino: String
+    cellulare: String
+    codice_fiscale: String
+    cognome: String
+    created_at: timestamptz
+    data_nascita: String
+    deleted_at: timestamptz
+    email: String
+    iban: String
+    id: uuid
+    nome: String
+    note: String
+    sezione_cai: String
+    stato: String
+    updated_at: timestamptz
+}
+
+"response of any mutation on the table \"istruttori\""
+type istruttori_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [istruttori!]!
+}
+
+"mutation root"
+type mutation_root {
+    "delete data from the table: \"attivita\""
+    delete_attivita(
+        "filter the rows which have to be deleted"
+        where: attivita_bool_exp!
+    ): attivita_mutation_response
+    "delete single row from the table: \"attivita\""
+    delete_attivita_by_pk(id: uuid!): attivita
+    "delete data from the table: \"corsi\""
+    delete_corsi(
+        "filter the rows which have to be deleted"
+        where: corsi_bool_exp!
+    ): corsi_mutation_response
+    "delete single row from the table: \"corsi\""
+    delete_corsi_by_pk(id: uuid!): corsi
+    "delete data from the table: \"gruppi\""
+    delete_gruppi(
+        "filter the rows which have to be deleted"
+        where: gruppi_bool_exp!
+    ): gruppi_mutation_response
+    "delete single row from the table: \"gruppi\""
+    delete_gruppi_by_pk(id: uuid!): gruppi
+    "delete data from the table: \"istruttori\""
+    delete_istruttori(
+        "filter the rows which have to be deleted"
+        where: istruttori_bool_exp!
+    ): istruttori_mutation_response
+    "delete single row from the table: \"istruttori\""
+    delete_istruttori_by_pk(id: uuid!): istruttori
+    "delete data from the table: \"ruoli\""
+    delete_ruoli(
+        "filter the rows which have to be deleted"
+        where: ruoli_bool_exp!
+    ): ruoli_mutation_response
+    "delete data from the table: \"ruoli_attivita\""
+    delete_ruoli_attivita(
+        "filter the rows which have to be deleted"
+        where: ruoli_attivita_bool_exp!
+    ): ruoli_attivita_mutation_response
+    "delete single row from the table: \"ruoli_attivita\""
+    delete_ruoli_attivita_by_pk(attivita_id: uuid!, istruttore_id: uuid!, profilo: jsonb!): ruoli_attivita
+    "delete single row from the table: \"ruoli\""
+    delete_ruoli_by_pk(id: uuid!): ruoli
+    "delete data from the table: \"ruoli_corsi\""
+    delete_ruoli_corsi(
+        "filter the rows which have to be deleted"
+        where: ruoli_corsi_bool_exp!
+    ): ruoli_corsi_mutation_response
+    "delete single row from the table: \"ruoli_corsi\""
+    delete_ruoli_corsi_by_pk(corso_id: uuid!, istruttore_id: uuid!, profilo: jsonb!): ruoli_corsi
+    "delete data from the table: \"ruoli_gruppi\""
+    delete_ruoli_gruppi(
+        "filter the rows which have to be deleted"
+        where: ruoli_gruppi_bool_exp!
+    ): ruoli_gruppi_mutation_response
+    "delete single row from the table: \"ruoli_gruppi\""
+    delete_ruoli_gruppi_by_pk(id: uuid!): ruoli_gruppi
+    "delete data from the table: \"tokens\""
+    delete_tokens(
+        "filter the rows which have to be deleted"
+        where: tokens_bool_exp!
+    ): tokens_mutation_response
+    "delete single row from the table: \"tokens\""
+    delete_tokens_by_pk(identifier: String!, token: String!): tokens
+    "delete data from the table: \"users\""
+    delete_users(
+        "filter the rows which have to be deleted"
+        where: users_bool_exp!
+    ): users_mutation_response
+    "delete single row from the table: \"users\""
+    delete_users_by_pk(id: uuid!): users
+    "insert data into the table: \"attivita\""
+    insert_attivita(
+        "the rows to be inserted"
+        objects: [attivita_insert_input!]!,
+        "upsert condition"
+        on_conflict: attivita_on_conflict
+    ): attivita_mutation_response
+    "insert a single row into the table: \"attivita\""
+    insert_attivita_one(
+        "the row to be inserted"
+        object: attivita_insert_input!,
+        "upsert condition"
+        on_conflict: attivita_on_conflict
+    ): attivita
+    "insert data into the table: \"corsi\""
+    insert_corsi(
+        "the rows to be inserted"
+        objects: [corsi_insert_input!]!,
+        "upsert condition"
+        on_conflict: corsi_on_conflict
+    ): corsi_mutation_response
+    "insert a single row into the table: \"corsi\""
+    insert_corsi_one(
+        "the row to be inserted"
+        object: corsi_insert_input!,
+        "upsert condition"
+        on_conflict: corsi_on_conflict
+    ): corsi
+    "insert data into the table: \"gruppi\""
+    insert_gruppi(
+        "the rows to be inserted"
+        objects: [gruppi_insert_input!]!,
+        "upsert condition"
+        on_conflict: gruppi_on_conflict
+    ): gruppi_mutation_response
+    "insert a single row into the table: \"gruppi\""
+    insert_gruppi_one(
+        "the row to be inserted"
+        object: gruppi_insert_input!,
+        "upsert condition"
+        on_conflict: gruppi_on_conflict
+    ): gruppi
+    "insert data into the table: \"istruttori\""
+    insert_istruttori(
+        "the rows to be inserted"
+        objects: [istruttori_insert_input!]!,
+        "upsert condition"
+        on_conflict: istruttori_on_conflict
+    ): istruttori_mutation_response
+    "insert a single row into the table: \"istruttori\""
+    insert_istruttori_one(
+        "the row to be inserted"
+        object: istruttori_insert_input!,
+        "upsert condition"
+        on_conflict: istruttori_on_conflict
+    ): istruttori
+    "insert data into the table: \"ruoli\""
+    insert_ruoli(
+        "the rows to be inserted"
+        objects: [ruoli_insert_input!]!,
+        "upsert condition"
+        on_conflict: ruoli_on_conflict
+    ): ruoli_mutation_response
+    "insert data into the table: \"ruoli_attivita\""
+    insert_ruoli_attivita(
+        "the rows to be inserted"
+        objects: [ruoli_attivita_insert_input!]!,
+        "upsert condition"
+        on_conflict: ruoli_attivita_on_conflict
+    ): ruoli_attivita_mutation_response
+    "insert a single row into the table: \"ruoli_attivita\""
+    insert_ruoli_attivita_one(
+        "the row to be inserted"
+        object: ruoli_attivita_insert_input!,
+        "upsert condition"
+        on_conflict: ruoli_attivita_on_conflict
+    ): ruoli_attivita
+    "insert data into the table: \"ruoli_corsi\""
+    insert_ruoli_corsi(
+        "the rows to be inserted"
+        objects: [ruoli_corsi_insert_input!]!,
+        "upsert condition"
+        on_conflict: ruoli_corsi_on_conflict
+    ): ruoli_corsi_mutation_response
+    "insert a single row into the table: \"ruoli_corsi\""
+    insert_ruoli_corsi_one(
+        "the row to be inserted"
+        object: ruoli_corsi_insert_input!,
+        "upsert condition"
+        on_conflict: ruoli_corsi_on_conflict
+    ): ruoli_corsi
+    "insert data into the table: \"ruoli_gruppi\""
+    insert_ruoli_gruppi(
+        "the rows to be inserted"
+        objects: [ruoli_gruppi_insert_input!]!,
+        "upsert condition"
+        on_conflict: ruoli_gruppi_on_conflict
+    ): ruoli_gruppi_mutation_response
+    "insert a single row into the table: \"ruoli_gruppi\""
+    insert_ruoli_gruppi_one(
+        "the row to be inserted"
+        object: ruoli_gruppi_insert_input!,
+        "upsert condition"
+        on_conflict: ruoli_gruppi_on_conflict
+    ): ruoli_gruppi
+    "insert a single row into the table: \"ruoli\""
+    insert_ruoli_one(
+        "the row to be inserted"
+        object: ruoli_insert_input!,
+        "upsert condition"
+        on_conflict: ruoli_on_conflict
+    ): ruoli
+    "insert data into the table: \"tokens\""
+    insert_tokens(
+        "the rows to be inserted"
+        objects: [tokens_insert_input!]!,
+        "upsert condition"
+        on_conflict: tokens_on_conflict
+    ): tokens_mutation_response
+    "insert a single row into the table: \"tokens\""
+    insert_tokens_one(
+        "the row to be inserted"
+        object: tokens_insert_input!,
+        "upsert condition"
+        on_conflict: tokens_on_conflict
+    ): tokens
+    "insert data into the table: \"users\""
+    insert_users(
+        "the rows to be inserted"
+        objects: [users_insert_input!]!,
+        "upsert condition"
+        on_conflict: users_on_conflict
+    ): users_mutation_response
+    "insert a single row into the table: \"users\""
+    insert_users_one(
+        "the row to be inserted"
+        object: users_insert_input!,
+        "upsert condition"
+        on_conflict: users_on_conflict
+    ): users
+    "update data of the table: \"attivita\""
+    update_attivita(
+        "sets the columns of the filtered rows to the given values"
+        _set: attivita_set_input,
+        "filter the rows which have to be updated"
+        where: attivita_bool_exp!
+    ): attivita_mutation_response
+    "update single row of the table: \"attivita\""
+    update_attivita_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: attivita_set_input,
+        pk_columns: attivita_pk_columns_input!
+    ): attivita
+    "update multiples rows of table: \"attivita\""
+    update_attivita_many(
+        "updates to execute, in order"
+        updates: [attivita_updates!]!
+    ): [attivita_mutation_response]
+    "update data of the table: \"corsi\""
+    update_corsi(
+        "sets the columns of the filtered rows to the given values"
+        _set: corsi_set_input,
+        "filter the rows which have to be updated"
+        where: corsi_bool_exp!
+    ): corsi_mutation_response
+    "update single row of the table: \"corsi\""
+    update_corsi_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: corsi_set_input,
+        pk_columns: corsi_pk_columns_input!
+    ): corsi
+    "update multiples rows of table: \"corsi\""
+    update_corsi_many(
+        "updates to execute, in order"
+        updates: [corsi_updates!]!
+    ): [corsi_mutation_response]
+    "update data of the table: \"gruppi\""
+    update_gruppi(
+        "append existing jsonb value of filtered columns with new jsonb value"
+        _append: gruppi_append_input,
+        "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+        _delete_at_path: gruppi_delete_at_path_input,
+        "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+        _delete_elem: gruppi_delete_elem_input,
+        "delete key/value pair or string element. key/value pairs are matched based on their key value"
+        _delete_key: gruppi_delete_key_input,
+        "prepend existing jsonb value of filtered columns with new jsonb value"
+        _prepend: gruppi_prepend_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: gruppi_set_input,
+        "filter the rows which have to be updated"
+        where: gruppi_bool_exp!
+    ): gruppi_mutation_response
+    "update single row of the table: \"gruppi\""
+    update_gruppi_by_pk(
+        "append existing jsonb value of filtered columns with new jsonb value"
+        _append: gruppi_append_input,
+        "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+        _delete_at_path: gruppi_delete_at_path_input,
+        "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+        _delete_elem: gruppi_delete_elem_input,
+        "delete key/value pair or string element. key/value pairs are matched based on their key value"
+        _delete_key: gruppi_delete_key_input,
+        "prepend existing jsonb value of filtered columns with new jsonb value"
+        _prepend: gruppi_prepend_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: gruppi_set_input,
+        pk_columns: gruppi_pk_columns_input!
+    ): gruppi
+    "update multiples rows of table: \"gruppi\""
+    update_gruppi_many(
+        "updates to execute, in order"
+        updates: [gruppi_updates!]!
+    ): [gruppi_mutation_response]
+    "update data of the table: \"istruttori\""
+    update_istruttori(
+        "append existing jsonb value of filtered columns with new jsonb value"
+        _append: istruttori_append_input,
+        "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+        _delete_at_path: istruttori_delete_at_path_input,
+        "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+        _delete_elem: istruttori_delete_elem_input,
+        "delete key/value pair or string element. key/value pairs are matched based on their key value"
+        _delete_key: istruttori_delete_key_input,
+        "prepend existing jsonb value of filtered columns with new jsonb value"
+        _prepend: istruttori_prepend_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: istruttori_set_input,
+        "filter the rows which have to be updated"
+        where: istruttori_bool_exp!
+    ): istruttori_mutation_response
+    "update single row of the table: \"istruttori\""
+    update_istruttori_by_pk(
+        "append existing jsonb value of filtered columns with new jsonb value"
+        _append: istruttori_append_input,
+        "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+        _delete_at_path: istruttori_delete_at_path_input,
+        "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+        _delete_elem: istruttori_delete_elem_input,
+        "delete key/value pair or string element. key/value pairs are matched based on their key value"
+        _delete_key: istruttori_delete_key_input,
+        "prepend existing jsonb value of filtered columns with new jsonb value"
+        _prepend: istruttori_prepend_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: istruttori_set_input,
+        pk_columns: istruttori_pk_columns_input!
+    ): istruttori
+    "update multiples rows of table: \"istruttori\""
+    update_istruttori_many(
+        "updates to execute, in order"
+        updates: [istruttori_updates!]!
+    ): [istruttori_mutation_response]
+    "update data of the table: \"ruoli\""
+    update_ruoli(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: ruoli_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: ruoli_set_input,
+        "filter the rows which have to be updated"
+        where: ruoli_bool_exp!
+    ): ruoli_mutation_response
+    "update data of the table: \"ruoli_attivita\""
+    update_ruoli_attivita(
+        "append existing jsonb value of filtered columns with new jsonb value"
+        _append: ruoli_attivita_append_input,
+        "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+        _delete_at_path: ruoli_attivita_delete_at_path_input,
+        "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+        _delete_elem: ruoli_attivita_delete_elem_input,
+        "delete key/value pair or string element. key/value pairs are matched based on their key value"
+        _delete_key: ruoli_attivita_delete_key_input,
+        "prepend existing jsonb value of filtered columns with new jsonb value"
+        _prepend: ruoli_attivita_prepend_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: ruoli_attivita_set_input,
+        "filter the rows which have to be updated"
+        where: ruoli_attivita_bool_exp!
+    ): ruoli_attivita_mutation_response
+    "update single row of the table: \"ruoli_attivita\""
+    update_ruoli_attivita_by_pk(
+        "append existing jsonb value of filtered columns with new jsonb value"
+        _append: ruoli_attivita_append_input,
+        "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+        _delete_at_path: ruoli_attivita_delete_at_path_input,
+        "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+        _delete_elem: ruoli_attivita_delete_elem_input,
+        "delete key/value pair or string element. key/value pairs are matched based on their key value"
+        _delete_key: ruoli_attivita_delete_key_input,
+        "prepend existing jsonb value of filtered columns with new jsonb value"
+        _prepend: ruoli_attivita_prepend_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: ruoli_attivita_set_input,
+        pk_columns: ruoli_attivita_pk_columns_input!
+    ): ruoli_attivita
+    "update multiples rows of table: \"ruoli_attivita\""
+    update_ruoli_attivita_many(
+        "updates to execute, in order"
+        updates: [ruoli_attivita_updates!]!
+    ): [ruoli_attivita_mutation_response]
+    "update single row of the table: \"ruoli\""
+    update_ruoli_by_pk(
+        "increments the numeric columns with given value of the filtered values"
+        _inc: ruoli_inc_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: ruoli_set_input,
+        pk_columns: ruoli_pk_columns_input!
+    ): ruoli
+    "update data of the table: \"ruoli_corsi\""
+    update_ruoli_corsi(
+        "append existing jsonb value of filtered columns with new jsonb value"
+        _append: ruoli_corsi_append_input,
+        "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+        _delete_at_path: ruoli_corsi_delete_at_path_input,
+        "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+        _delete_elem: ruoli_corsi_delete_elem_input,
+        "delete key/value pair or string element. key/value pairs are matched based on their key value"
+        _delete_key: ruoli_corsi_delete_key_input,
+        "prepend existing jsonb value of filtered columns with new jsonb value"
+        _prepend: ruoli_corsi_prepend_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: ruoli_corsi_set_input,
+        "filter the rows which have to be updated"
+        where: ruoli_corsi_bool_exp!
+    ): ruoli_corsi_mutation_response
+    "update single row of the table: \"ruoli_corsi\""
+    update_ruoli_corsi_by_pk(
+        "append existing jsonb value of filtered columns with new jsonb value"
+        _append: ruoli_corsi_append_input,
+        "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+        _delete_at_path: ruoli_corsi_delete_at_path_input,
+        "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+        _delete_elem: ruoli_corsi_delete_elem_input,
+        "delete key/value pair or string element. key/value pairs are matched based on their key value"
+        _delete_key: ruoli_corsi_delete_key_input,
+        "prepend existing jsonb value of filtered columns with new jsonb value"
+        _prepend: ruoli_corsi_prepend_input,
+        "sets the columns of the filtered rows to the given values"
+        _set: ruoli_corsi_set_input,
+        pk_columns: ruoli_corsi_pk_columns_input!
+    ): ruoli_corsi
+    "update multiples rows of table: \"ruoli_corsi\""
+    update_ruoli_corsi_many(
+        "updates to execute, in order"
+        updates: [ruoli_corsi_updates!]!
+    ): [ruoli_corsi_mutation_response]
+    "update data of the table: \"ruoli_gruppi\""
+    update_ruoli_gruppi(
+        "sets the columns of the filtered rows to the given values"
+        _set: ruoli_gruppi_set_input,
+        "filter the rows which have to be updated"
+        where: ruoli_gruppi_bool_exp!
+    ): ruoli_gruppi_mutation_response
+    "update single row of the table: \"ruoli_gruppi\""
+    update_ruoli_gruppi_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: ruoli_gruppi_set_input,
+        pk_columns: ruoli_gruppi_pk_columns_input!
+    ): ruoli_gruppi
+    "update multiples rows of table: \"ruoli_gruppi\""
+    update_ruoli_gruppi_many(
+        "updates to execute, in order"
+        updates: [ruoli_gruppi_updates!]!
+    ): [ruoli_gruppi_mutation_response]
+    "update multiples rows of table: \"ruoli\""
+    update_ruoli_many(
+        "updates to execute, in order"
+        updates: [ruoli_updates!]!
+    ): [ruoli_mutation_response]
+    "update data of the table: \"tokens\""
+    update_tokens(
+        "sets the columns of the filtered rows to the given values"
+        _set: tokens_set_input,
+        "filter the rows which have to be updated"
+        where: tokens_bool_exp!
+    ): tokens_mutation_response
+    "update single row of the table: \"tokens\""
+    update_tokens_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: tokens_set_input,
+        pk_columns: tokens_pk_columns_input!
+    ): tokens
+    "update multiples rows of table: \"tokens\""
+    update_tokens_many(
+        "updates to execute, in order"
+        updates: [tokens_updates!]!
+    ): [tokens_mutation_response]
+    "update data of the table: \"users\""
+    update_users(
+        "sets the columns of the filtered rows to the given values"
+        _set: users_set_input,
+        "filter the rows which have to be updated"
+        where: users_bool_exp!
+    ): users_mutation_response
+    "update single row of the table: \"users\""
+    update_users_by_pk(
+        "sets the columns of the filtered rows to the given values"
+        _set: users_set_input,
+        pk_columns: users_pk_columns_input!
+    ): users
+    "update multiples rows of table: \"users\""
+    update_users_many(
+        "updates to execute, in order"
+        updates: [users_updates!]!
+    ): [users_mutation_response]
+}
+
+type query_root {
+    "An array relationship"
+    attivita(
+        "distinct select on columns"
+        distinct_on: [attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [attivita_order_by!],
+        "filter the rows returned"
+        where: attivita_bool_exp
+    ): [attivita!]!
+    "An aggregate relationship"
+    attivita_aggregate(
+        "distinct select on columns"
+        distinct_on: [attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [attivita_order_by!],
+        "filter the rows returned"
+        where: attivita_bool_exp
+    ): attivita_aggregate!
+    "fetch data from the table: \"attivita\" using primary key columns"
+    attivita_by_pk(id: uuid!): attivita
+    "fetch data from the table: \"corsi\""
+    corsi(
+        "distinct select on columns"
+        distinct_on: [corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [corsi_order_by!],
+        "filter the rows returned"
+        where: corsi_bool_exp
+    ): [corsi!]!
+    "fetch aggregated fields from the table: \"corsi\""
+    corsi_aggregate(
+        "distinct select on columns"
+        distinct_on: [corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [corsi_order_by!],
+        "filter the rows returned"
+        where: corsi_bool_exp
+    ): corsi_aggregate!
+    "fetch data from the table: \"corsi\" using primary key columns"
+    corsi_by_pk(id: uuid!): corsi
+    "fetch data from the table: \"gruppi\""
+    gruppi(
+        "distinct select on columns"
+        distinct_on: [gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [gruppi_order_by!],
+        "filter the rows returned"
+        where: gruppi_bool_exp
+    ): [gruppi!]!
+    "fetch aggregated fields from the table: \"gruppi\""
+    gruppi_aggregate(
+        "distinct select on columns"
+        distinct_on: [gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [gruppi_order_by!],
+        "filter the rows returned"
+        where: gruppi_bool_exp
+    ): gruppi_aggregate!
+    "fetch data from the table: \"gruppi\" using primary key columns"
+    gruppi_by_pk(id: uuid!): gruppi
+    "fetch data from the table: \"istruttori\""
+    istruttori(
+        "distinct select on columns"
+        distinct_on: [istruttori_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [istruttori_order_by!],
+        "filter the rows returned"
+        where: istruttori_bool_exp
+    ): [istruttori!]!
+    "fetch aggregated fields from the table: \"istruttori\""
+    istruttori_aggregate(
+        "distinct select on columns"
+        distinct_on: [istruttori_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [istruttori_order_by!],
+        "filter the rows returned"
+        where: istruttori_bool_exp
+    ): istruttori_aggregate!
+    "fetch data from the table: \"istruttori\" using primary key columns"
+    istruttori_by_pk(id: uuid!): istruttori
+    "fetch data from the table: \"ruoli\""
+    ruoli(
+        "distinct select on columns"
+        distinct_on: [ruoli_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_order_by!],
+        "filter the rows returned"
+        where: ruoli_bool_exp
+    ): [ruoli!]!
+    "fetch aggregated fields from the table: \"ruoli\""
+    ruoli_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_order_by!],
+        "filter the rows returned"
+        where: ruoli_bool_exp
+    ): ruoli_aggregate!
+    "fetch data from the table: \"ruoli_attivita\""
+    ruoli_attivita(
+        "distinct select on columns"
+        distinct_on: [ruoli_attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_attivita_order_by!],
+        "filter the rows returned"
+        where: ruoli_attivita_bool_exp
+    ): [ruoli_attivita!]!
+    "fetch aggregated fields from the table: \"ruoli_attivita\""
+    ruoli_attivita_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_attivita_order_by!],
+        "filter the rows returned"
+        where: ruoli_attivita_bool_exp
+    ): ruoli_attivita_aggregate!
+    "fetch data from the table: \"ruoli_attivita\" using primary key columns"
+    ruoli_attivita_by_pk(attivita_id: uuid!, istruttore_id: uuid!, profilo: jsonb!): ruoli_attivita
+    "fetch data from the table: \"ruoli\" using primary key columns"
+    ruoli_by_pk(id: uuid!): ruoli
+    "fetch data from the table: \"ruoli_corsi\""
+    ruoli_corsi(
+        "distinct select on columns"
+        distinct_on: [ruoli_corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_corsi_order_by!],
+        "filter the rows returned"
+        where: ruoli_corsi_bool_exp
+    ): [ruoli_corsi!]!
+    "fetch aggregated fields from the table: \"ruoli_corsi\""
+    ruoli_corsi_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_corsi_order_by!],
+        "filter the rows returned"
+        where: ruoli_corsi_bool_exp
+    ): ruoli_corsi_aggregate!
+    "fetch data from the table: \"ruoli_corsi\" using primary key columns"
+    ruoli_corsi_by_pk(corso_id: uuid!, istruttore_id: uuid!, profilo: jsonb!): ruoli_corsi
+    "fetch data from the table: \"ruoli_gruppi\""
+    ruoli_gruppi(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): [ruoli_gruppi!]!
+    "fetch aggregated fields from the table: \"ruoli_gruppi\""
+    ruoli_gruppi_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): ruoli_gruppi_aggregate!
+    "fetch data from the table: \"ruoli_gruppi\" using primary key columns"
+    ruoli_gruppi_by_pk(id: uuid!): ruoli_gruppi
+    "fetch data from the table: \"tokens\""
+    tokens(
+        "distinct select on columns"
+        distinct_on: [tokens_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tokens_order_by!],
+        "filter the rows returned"
+        where: tokens_bool_exp
+    ): [tokens!]!
+    "fetch aggregated fields from the table: \"tokens\""
+    tokens_aggregate(
+        "distinct select on columns"
+        distinct_on: [tokens_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tokens_order_by!],
+        "filter the rows returned"
+        where: tokens_bool_exp
+    ): tokens_aggregate!
+    "fetch data from the table: \"tokens\" using primary key columns"
+    tokens_by_pk(identifier: String!, token: String!): tokens
+    "fetch data from the table: \"users\""
+    users(
+        "distinct select on columns"
+        distinct_on: [users_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [users_order_by!],
+        "filter the rows returned"
+        where: users_bool_exp
+    ): [users!]!
+    "fetch aggregated fields from the table: \"users\""
+    users_aggregate(
+        "distinct select on columns"
+        distinct_on: [users_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [users_order_by!],
+        "filter the rows returned"
+        where: users_bool_exp
+    ): users_aggregate!
+    "fetch data from the table: \"users\" using primary key columns"
+    users_by_pk(id: uuid!): users
+}
+
+"columns and relationships of \"ruoli\""
+type ruoli {
+    admin_layout: Boolean!
+    id: uuid!
+    "An array relationship"
+    istruttori(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): [ruoli_gruppi!]!
+    "An aggregate relationship"
+    istruttori_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): ruoli_gruppi_aggregate!
+    nome: String!
+    priority: numeric!
+    profilo: String
+}
+
+"aggregated selection of \"ruoli\""
+type ruoli_aggregate {
+    aggregate: ruoli_aggregate_fields
+    nodes: [ruoli!]!
+}
+
+"aggregate fields of \"ruoli\""
+type ruoli_aggregate_fields {
+    avg: ruoli_avg_fields
+    count(columns: [ruoli_select_column!], distinct: Boolean): Int!
+    max: ruoli_max_fields
+    min: ruoli_min_fields
+    stddev: ruoli_stddev_fields
+    stddev_pop: ruoli_stddev_pop_fields
+    stddev_samp: ruoli_stddev_samp_fields
+    sum: ruoli_sum_fields
+    var_pop: ruoli_var_pop_fields
+    var_samp: ruoli_var_samp_fields
+    variance: ruoli_variance_fields
+}
+
+"columns and relationships of \"ruoli_attivita\""
+type ruoli_attivita {
+    "An object relationship"
+    attivita: attivita!
+    attivita_id: uuid!
+    "An object relationship"
+    istruttore: istruttori!
+    istruttore_id: uuid!
+    profilo(
+        "JSON select path"
+        path: String
+    ): jsonb!
+}
+
+"aggregated selection of \"ruoli_attivita\""
+type ruoli_attivita_aggregate {
+    aggregate: ruoli_attivita_aggregate_fields
+    nodes: [ruoli_attivita!]!
+}
+
+"aggregate fields of \"ruoli_attivita\""
+type ruoli_attivita_aggregate_fields {
+    count(columns: [ruoli_attivita_select_column!], distinct: Boolean): Int!
+    max: ruoli_attivita_max_fields
+    min: ruoli_attivita_min_fields
+}
+
+"aggregate max on columns"
+type ruoli_attivita_max_fields {
+    attivita_id: uuid
+    istruttore_id: uuid
+}
+
+"aggregate min on columns"
+type ruoli_attivita_min_fields {
+    attivita_id: uuid
+    istruttore_id: uuid
+}
+
+"response of any mutation on the table \"ruoli_attivita\""
+type ruoli_attivita_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [ruoli_attivita!]!
+}
+
+"aggregate avg on columns"
+type ruoli_avg_fields {
+    priority: Float
+}
+
+"columns and relationships of \"ruoli_corsi\""
+type ruoli_corsi {
+    "An object relationship"
+    corso: corsi!
+    corso_id: uuid!
+    "An object relationship"
+    istruttore: istruttori!
+    istruttore_id: uuid!
+    profilo(
+        "JSON select path"
+        path: String
+    ): jsonb!
+}
+
+"aggregated selection of \"ruoli_corsi\""
+type ruoli_corsi_aggregate {
+    aggregate: ruoli_corsi_aggregate_fields
+    nodes: [ruoli_corsi!]!
+}
+
+"aggregate fields of \"ruoli_corsi\""
+type ruoli_corsi_aggregate_fields {
+    count(columns: [ruoli_corsi_select_column!], distinct: Boolean): Int!
+    max: ruoli_corsi_max_fields
+    min: ruoli_corsi_min_fields
+}
+
+"aggregate max on columns"
+type ruoli_corsi_max_fields {
+    corso_id: uuid
+    istruttore_id: uuid
+}
+
+"aggregate min on columns"
+type ruoli_corsi_min_fields {
+    corso_id: uuid
+    istruttore_id: uuid
+}
+
+"response of any mutation on the table \"ruoli_corsi\""
+type ruoli_corsi_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [ruoli_corsi!]!
+}
+
+"columns and relationships of \"ruoli_gruppi\""
+type ruoli_gruppi {
+    "An object relationship"
+    gruppo: gruppi!
+    gruppo_id: uuid!
+    id: uuid!
+    "An object relationship"
+    istruttore: istruttori
+    istruttore_id: uuid
+    "An object relationship"
+    ruolo: ruoli!
+    ruolo_id: uuid!
+    "An object relationship"
+    user: users
+    user_id: uuid
+}
+
+"aggregated selection of \"ruoli_gruppi\""
+type ruoli_gruppi_aggregate {
+    aggregate: ruoli_gruppi_aggregate_fields
+    nodes: [ruoli_gruppi!]!
+}
+
+"aggregate fields of \"ruoli_gruppi\""
+type ruoli_gruppi_aggregate_fields {
+    count(columns: [ruoli_gruppi_select_column!], distinct: Boolean): Int!
+    max: ruoli_gruppi_max_fields
+    min: ruoli_gruppi_min_fields
+}
+
+"aggregate max on columns"
+type ruoli_gruppi_max_fields {
+    gruppo_id: uuid
+    id: uuid
+    istruttore_id: uuid
+    ruolo_id: uuid
+    user_id: uuid
+}
+
+"aggregate min on columns"
+type ruoli_gruppi_min_fields {
+    gruppo_id: uuid
+    id: uuid
+    istruttore_id: uuid
+    ruolo_id: uuid
+    user_id: uuid
+}
+
+"response of any mutation on the table \"ruoli_gruppi\""
+type ruoli_gruppi_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [ruoli_gruppi!]!
+}
+
+"aggregate max on columns"
+type ruoli_max_fields {
+    id: uuid
+    nome: String
+    priority: numeric
+    profilo: String
+}
+
+"aggregate min on columns"
+type ruoli_min_fields {
+    id: uuid
+    nome: String
+    priority: numeric
+    profilo: String
+}
+
+"response of any mutation on the table \"ruoli\""
+type ruoli_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [ruoli!]!
+}
+
+"aggregate stddev on columns"
+type ruoli_stddev_fields {
+    priority: Float
+}
+
+"aggregate stddev_pop on columns"
+type ruoli_stddev_pop_fields {
+    priority: Float
+}
+
+"aggregate stddev_samp on columns"
+type ruoli_stddev_samp_fields {
+    priority: Float
+}
+
+"aggregate sum on columns"
+type ruoli_sum_fields {
+    priority: numeric
+}
+
+"aggregate var_pop on columns"
+type ruoli_var_pop_fields {
+    priority: Float
+}
+
+"aggregate var_samp on columns"
+type ruoli_var_samp_fields {
+    priority: Float
+}
+
+"aggregate variance on columns"
+type ruoli_variance_fields {
+    priority: Float
+}
+
+type subscription_root {
+    "An array relationship"
+    attivita(
+        "distinct select on columns"
+        distinct_on: [attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [attivita_order_by!],
+        "filter the rows returned"
+        where: attivita_bool_exp
+    ): [attivita!]!
+    "An aggregate relationship"
+    attivita_aggregate(
+        "distinct select on columns"
+        distinct_on: [attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [attivita_order_by!],
+        "filter the rows returned"
+        where: attivita_bool_exp
+    ): attivita_aggregate!
+    "fetch data from the table: \"attivita\" using primary key columns"
+    attivita_by_pk(id: uuid!): attivita
+    "fetch data from the table in a streaming manner: \"attivita\""
+    attivita_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [attivita_stream_cursor_input]!,
+        "filter the rows returned"
+        where: attivita_bool_exp
+    ): [attivita!]!
+    "fetch data from the table: \"corsi\""
+    corsi(
+        "distinct select on columns"
+        distinct_on: [corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [corsi_order_by!],
+        "filter the rows returned"
+        where: corsi_bool_exp
+    ): [corsi!]!
+    "fetch aggregated fields from the table: \"corsi\""
+    corsi_aggregate(
+        "distinct select on columns"
+        distinct_on: [corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [corsi_order_by!],
+        "filter the rows returned"
+        where: corsi_bool_exp
+    ): corsi_aggregate!
+    "fetch data from the table: \"corsi\" using primary key columns"
+    corsi_by_pk(id: uuid!): corsi
+    "fetch data from the table in a streaming manner: \"corsi\""
+    corsi_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [corsi_stream_cursor_input]!,
+        "filter the rows returned"
+        where: corsi_bool_exp
+    ): [corsi!]!
+    "fetch data from the table: \"gruppi\""
+    gruppi(
+        "distinct select on columns"
+        distinct_on: [gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [gruppi_order_by!],
+        "filter the rows returned"
+        where: gruppi_bool_exp
+    ): [gruppi!]!
+    "fetch aggregated fields from the table: \"gruppi\""
+    gruppi_aggregate(
+        "distinct select on columns"
+        distinct_on: [gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [gruppi_order_by!],
+        "filter the rows returned"
+        where: gruppi_bool_exp
+    ): gruppi_aggregate!
+    "fetch data from the table: \"gruppi\" using primary key columns"
+    gruppi_by_pk(id: uuid!): gruppi
+    "fetch data from the table in a streaming manner: \"gruppi\""
+    gruppi_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [gruppi_stream_cursor_input]!,
+        "filter the rows returned"
+        where: gruppi_bool_exp
+    ): [gruppi!]!
+    "fetch data from the table: \"istruttori\""
+    istruttori(
+        "distinct select on columns"
+        distinct_on: [istruttori_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [istruttori_order_by!],
+        "filter the rows returned"
+        where: istruttori_bool_exp
+    ): [istruttori!]!
+    "fetch aggregated fields from the table: \"istruttori\""
+    istruttori_aggregate(
+        "distinct select on columns"
+        distinct_on: [istruttori_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [istruttori_order_by!],
+        "filter the rows returned"
+        where: istruttori_bool_exp
+    ): istruttori_aggregate!
+    "fetch data from the table: \"istruttori\" using primary key columns"
+    istruttori_by_pk(id: uuid!): istruttori
+    "fetch data from the table in a streaming manner: \"istruttori\""
+    istruttori_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [istruttori_stream_cursor_input]!,
+        "filter the rows returned"
+        where: istruttori_bool_exp
+    ): [istruttori!]!
+    "fetch data from the table: \"ruoli\""
+    ruoli(
+        "distinct select on columns"
+        distinct_on: [ruoli_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_order_by!],
+        "filter the rows returned"
+        where: ruoli_bool_exp
+    ): [ruoli!]!
+    "fetch aggregated fields from the table: \"ruoli\""
+    ruoli_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_order_by!],
+        "filter the rows returned"
+        where: ruoli_bool_exp
+    ): ruoli_aggregate!
+    "fetch data from the table: \"ruoli_attivita\""
+    ruoli_attivita(
+        "distinct select on columns"
+        distinct_on: [ruoli_attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_attivita_order_by!],
+        "filter the rows returned"
+        where: ruoli_attivita_bool_exp
+    ): [ruoli_attivita!]!
+    "fetch aggregated fields from the table: \"ruoli_attivita\""
+    ruoli_attivita_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_attivita_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_attivita_order_by!],
+        "filter the rows returned"
+        where: ruoli_attivita_bool_exp
+    ): ruoli_attivita_aggregate!
+    "fetch data from the table: \"ruoli_attivita\" using primary key columns"
+    ruoli_attivita_by_pk(attivita_id: uuid!, istruttore_id: uuid!, profilo: jsonb!): ruoli_attivita
+    "fetch data from the table in a streaming manner: \"ruoli_attivita\""
+    ruoli_attivita_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [ruoli_attivita_stream_cursor_input]!,
+        "filter the rows returned"
+        where: ruoli_attivita_bool_exp
+    ): [ruoli_attivita!]!
+    "fetch data from the table: \"ruoli\" using primary key columns"
+    ruoli_by_pk(id: uuid!): ruoli
+    "fetch data from the table: \"ruoli_corsi\""
+    ruoli_corsi(
+        "distinct select on columns"
+        distinct_on: [ruoli_corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_corsi_order_by!],
+        "filter the rows returned"
+        where: ruoli_corsi_bool_exp
+    ): [ruoli_corsi!]!
+    "fetch aggregated fields from the table: \"ruoli_corsi\""
+    ruoli_corsi_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_corsi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_corsi_order_by!],
+        "filter the rows returned"
+        where: ruoli_corsi_bool_exp
+    ): ruoli_corsi_aggregate!
+    "fetch data from the table: \"ruoli_corsi\" using primary key columns"
+    ruoli_corsi_by_pk(corso_id: uuid!, istruttore_id: uuid!, profilo: jsonb!): ruoli_corsi
+    "fetch data from the table in a streaming manner: \"ruoli_corsi\""
+    ruoli_corsi_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [ruoli_corsi_stream_cursor_input]!,
+        "filter the rows returned"
+        where: ruoli_corsi_bool_exp
+    ): [ruoli_corsi!]!
+    "fetch data from the table: \"ruoli_gruppi\""
+    ruoli_gruppi(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): [ruoli_gruppi!]!
+    "fetch aggregated fields from the table: \"ruoli_gruppi\""
+    ruoli_gruppi_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): ruoli_gruppi_aggregate!
+    "fetch data from the table: \"ruoli_gruppi\" using primary key columns"
+    ruoli_gruppi_by_pk(id: uuid!): ruoli_gruppi
+    "fetch data from the table in a streaming manner: \"ruoli_gruppi\""
+    ruoli_gruppi_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [ruoli_gruppi_stream_cursor_input]!,
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): [ruoli_gruppi!]!
+    "fetch data from the table in a streaming manner: \"ruoli\""
+    ruoli_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [ruoli_stream_cursor_input]!,
+        "filter the rows returned"
+        where: ruoli_bool_exp
+    ): [ruoli!]!
+    "fetch data from the table: \"tokens\""
+    tokens(
+        "distinct select on columns"
+        distinct_on: [tokens_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tokens_order_by!],
+        "filter the rows returned"
+        where: tokens_bool_exp
+    ): [tokens!]!
+    "fetch aggregated fields from the table: \"tokens\""
+    tokens_aggregate(
+        "distinct select on columns"
+        distinct_on: [tokens_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [tokens_order_by!],
+        "filter the rows returned"
+        where: tokens_bool_exp
+    ): tokens_aggregate!
+    "fetch data from the table: \"tokens\" using primary key columns"
+    tokens_by_pk(identifier: String!, token: String!): tokens
+    "fetch data from the table in a streaming manner: \"tokens\""
+    tokens_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [tokens_stream_cursor_input]!,
+        "filter the rows returned"
+        where: tokens_bool_exp
+    ): [tokens!]!
+    "fetch data from the table: \"users\""
+    users(
+        "distinct select on columns"
+        distinct_on: [users_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [users_order_by!],
+        "filter the rows returned"
+        where: users_bool_exp
+    ): [users!]!
+    "fetch aggregated fields from the table: \"users\""
+    users_aggregate(
+        "distinct select on columns"
+        distinct_on: [users_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [users_order_by!],
+        "filter the rows returned"
+        where: users_bool_exp
+    ): users_aggregate!
+    "fetch data from the table: \"users\" using primary key columns"
+    users_by_pk(id: uuid!): users
+    "fetch data from the table in a streaming manner: \"users\""
+    users_stream(
+        "maximum number of rows returned in a single batch"
+        batch_size: Int!,
+        "cursor to stream the results returned by the query"
+        cursor: [users_stream_cursor_input]!,
+        "filter the rows returned"
+        where: users_bool_exp
+    ): [users!]!
+}
+
+"columns and relationships of \"tokens\""
+type tokens {
+    expires: date!
+    identifier: String!
+    token: String!
+}
+
+"aggregated selection of \"tokens\""
+type tokens_aggregate {
+    aggregate: tokens_aggregate_fields
+    nodes: [tokens!]!
+}
+
+"aggregate fields of \"tokens\""
+type tokens_aggregate_fields {
+    count(columns: [tokens_select_column!], distinct: Boolean): Int!
+    max: tokens_max_fields
+    min: tokens_min_fields
+}
+
+"aggregate max on columns"
+type tokens_max_fields {
+    expires: date
+    identifier: String
+    token: String
+}
+
+"aggregate min on columns"
+type tokens_min_fields {
+    expires: date
+    identifier: String
+    token: String
+}
+
+"response of any mutation on the table \"tokens\""
+type tokens_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [tokens!]!
+}
+
+"columns and relationships of \"users\""
+type users {
+    created_at: timestamptz
+    deleted_at: timestamptz
+    email: String!
+    id: uuid!
+    "An object relationship"
+    istruttore: istruttori
+    istruttore_id: uuid
+    nome: String!
+    password: String!
+    "An array relationship"
+    ruoli(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): [ruoli_gruppi!]!
+    "An aggregate relationship"
+    ruoli_aggregate(
+        "distinct select on columns"
+        distinct_on: [ruoli_gruppi_select_column!],
+        "limit the number of rows returned"
+        limit: Int,
+        "skip the first n rows. Use only with order_by"
+        offset: Int,
+        "sort the rows by one or more columns"
+        order_by: [ruoli_gruppi_order_by!],
+        "filter the rows returned"
+        where: ruoli_gruppi_bool_exp
+    ): ruoli_gruppi_aggregate!
+    updated_at: timestamptz
+    username: String!
+}
+
+"aggregated selection of \"users\""
+type users_aggregate {
+    aggregate: users_aggregate_fields
+    nodes: [users!]!
+}
+
+"aggregate fields of \"users\""
+type users_aggregate_fields {
+    count(columns: [users_select_column!], distinct: Boolean): Int!
+    max: users_max_fields
+    min: users_min_fields
+}
+
+"aggregate max on columns"
+type users_max_fields {
+    created_at: timestamptz
+    deleted_at: timestamptz
+    email: String
+    id: uuid
+    istruttore_id: uuid
+    nome: String
+    password: String
+    updated_at: timestamptz
+    username: String
+}
+
+"aggregate min on columns"
+type users_min_fields {
+    created_at: timestamptz
+    deleted_at: timestamptz
+    email: String
+    id: uuid
+    istruttore_id: uuid
+    nome: String
+    password: String
+    updated_at: timestamptz
+    username: String
+}
+
+"response of any mutation on the table \"users\""
+type users_mutation_response {
+    "number of rows affected by the mutation"
+    affected_rows: Int!
+    "data from the rows affected by the mutation"
+    returning: [users!]!
+}
+
+"unique or primary key constraints on table \"attivita\""
+enum attivita_constraint {
+    "unique or primary key constraint on columns \"corso_id\""
+    attivita_corso_id_key
+    "unique or primary key constraint on columns \"id\""
+    attivita_pkey
+}
+
+"select columns of table \"attivita\""
+enum attivita_select_column {
+    "column name"
+    corso_id
+    "column name"
+    data_fine
+    "column name"
+    data_inizio
+    "column name"
+    descrizione
+    "column name"
+    gruppo_id
+    "column name"
+    id
+    "column name"
+    luogo
+}
+
+"update columns of table \"attivita\""
+enum attivita_update_column {
+    "column name"
+    corso_id
+    "column name"
+    data_fine
+    "column name"
+    data_inizio
+    "column name"
+    descrizione
+    "column name"
+    gruppo_id
+    "column name"
+    id
+    "column name"
+    luogo
+}
+
+"unique or primary key constraints on table \"corsi\""
+enum corsi_constraint {
+    "unique or primary key constraint on columns \"id\""
+    corsi_pkey
+}
+
+"select columns of table \"corsi\""
+enum corsi_select_column {
+    "column name"
+    anno
+    "column name"
+    descrizione
+    "column name"
+    fine_iscrizioni
+    "column name"
+    id
+    "column name"
+    inizio_iscrizioni
+    "column name"
+    quota
+    "column name"
+    specialita
+}
+
+"update columns of table \"corsi\""
+enum corsi_update_column {
+    "column name"
+    anno
+    "column name"
+    descrizione
+    "column name"
+    fine_iscrizioni
+    "column name"
+    id
+    "column name"
+    inizio_iscrizioni
+    "column name"
+    quota
+    "column name"
+    specialita
+}
+
+"ordering argument of a cursor"
+enum cursor_ordering {
+    "ascending ordering of the cursor"
+    ASC
+    "descending ordering of the cursor"
+    DESC
+}
+
+"unique or primary key constraints on table \"gruppi\""
+enum gruppi_constraint {
+    "unique or primary key constraint on columns \"id\""
+    gruppi_pkey
+}
+
+"select columns of table \"gruppi\""
+enum gruppi_select_column {
+    "column name"
+    ambito
+    "column name"
+    created_at
+    "column name"
+    deleted_at
+    "column name"
+    id
+    "column name"
+    nome
+    "column name"
+    sezioni_cai
+    "column name"
+    tipo
+    "column name"
+    updated_at
+}
+
+"update columns of table \"gruppi\""
+enum gruppi_update_column {
+    "column name"
+    ambito
+    "column name"
+    created_at
+    "column name"
+    deleted_at
+    "column name"
+    id
+    "column name"
+    nome
+    "column name"
+    sezioni_cai
+    "column name"
+    tipo
+    "column name"
+    updated_at
+}
+
+"unique or primary key constraints on table \"istruttori\""
+enum istruttori_constraint {
+    "unique or primary key constraint on columns \"codice_fiscale\""
+    istruttori_codice_fiscale_key
+    "unique or primary key constraint on columns \"id\""
+    istruttori_pkey
+}
+
+"select columns of table \"istruttori\""
+enum istruttori_select_column {
+    "column name"
+    bollino
+    "column name"
+    cellulare
+    "column name"
+    codice_fiscale
+    "column name"
+    cognome
+    "column name"
+    created_at
+    "column name"
+    data_nascita
+    "column name"
+    deleted_at
+    "column name"
+    email
+    "column name"
+    iban
+    "column name"
+    id
+    "column name"
+    nome
+    "column name"
+    note
+    "column name"
+    sezione_cai
+    "column name"
+    specialita
+    "column name"
+    stato
+    "column name"
+    titoli
+    "column name"
+    updated_at
+}
+
+"update columns of table \"istruttori\""
+enum istruttori_update_column {
+    "column name"
+    bollino
+    "column name"
+    cellulare
+    "column name"
+    codice_fiscale
+    "column name"
+    cognome
+    "column name"
+    created_at
+    "column name"
+    data_nascita
+    "column name"
+    deleted_at
+    "column name"
+    email
+    "column name"
+    iban
+    "column name"
+    id
+    "column name"
+    nome
+    "column name"
+    note
+    "column name"
+    sezione_cai
+    "column name"
+    specialita
+    "column name"
+    stato
+    "column name"
+    titoli
+    "column name"
+    updated_at
+}
+
+"column ordering options"
+enum order_by {
+    "in ascending order, nulls last"
+    asc
+    "in ascending order, nulls first"
+    asc_nulls_first
+    "in ascending order, nulls last"
+    asc_nulls_last
+    "in descending order, nulls first"
+    desc
+    "in descending order, nulls first"
+    desc_nulls_first
+    "in descending order, nulls last"
+    desc_nulls_last
+}
+
+"unique or primary key constraints on table \"ruoli_attivita\""
+enum ruoli_attivita_constraint {
+    "unique or primary key constraint on columns \"attivita_id\", \"istruttore_id\", \"profilo\""
+    ruoli_attivita_pkey
+}
+
+"select columns of table \"ruoli_attivita\""
+enum ruoli_attivita_select_column {
+    "column name"
+    attivita_id
+    "column name"
+    istruttore_id
+    "column name"
+    profilo
+}
+
+"update columns of table \"ruoli_attivita\""
+enum ruoli_attivita_update_column {
+    "column name"
+    attivita_id
+    "column name"
+    istruttore_id
+    "column name"
+    profilo
+}
+
+"unique or primary key constraints on table \"ruoli\""
+enum ruoli_constraint {
+    "unique or primary key constraint on columns \"nome\""
+    ruoli_nome_key
+    "unique or primary key constraint on columns \"id\""
+    ruoli_pkey
+}
+
+"unique or primary key constraints on table \"ruoli_corsi\""
+enum ruoli_corsi_constraint {
+    "unique or primary key constraint on columns \"istruttore_id\", \"corso_id\", \"profilo\""
+    ruoli_corsi_pkey
+}
+
+"select columns of table \"ruoli_corsi\""
+enum ruoli_corsi_select_column {
+    "column name"
+    corso_id
+    "column name"
+    istruttore_id
+    "column name"
+    profilo
+}
+
+"update columns of table \"ruoli_corsi\""
+enum ruoli_corsi_update_column {
+    "column name"
+    corso_id
+    "column name"
+    istruttore_id
+    "column name"
+    profilo
+}
+
+"unique or primary key constraints on table \"ruoli_gruppi\""
+enum ruoli_gruppi_constraint {
+    "unique or primary key constraint on columns \"ruolo_id\", \"gruppo_id\", \"istruttore_id\""
+    ruoli_gruppi_istruttore_id_gruppo_id_ruolo_id_key
+    "unique or primary key constraint on columns \"id\""
+    ruoli_gruppi_pkey
+    "unique or primary key constraint on columns \"ruolo_id\", \"gruppo_id\", \"user_id\""
+    ruoli_gruppi_user_id_gruppo_id_ruolo_id_key
+}
+
+"select columns of table \"ruoli_gruppi\""
+enum ruoli_gruppi_select_column {
+    "column name"
+    gruppo_id
+    "column name"
+    id
+    "column name"
+    istruttore_id
+    "column name"
+    ruolo_id
+    "column name"
+    user_id
+}
+
+"update columns of table \"ruoli_gruppi\""
+enum ruoli_gruppi_update_column {
+    "column name"
+    gruppo_id
+    "column name"
+    id
+    "column name"
+    istruttore_id
+    "column name"
+    ruolo_id
+    "column name"
+    user_id
+}
+
+"select columns of table \"ruoli\""
+enum ruoli_select_column {
+    "column name"
+    admin_layout
+    "column name"
+    id
+    "column name"
+    nome
+    "column name"
+    priority
+    "column name"
+    profilo
+}
+
+"update columns of table \"ruoli\""
+enum ruoli_update_column {
+    "column name"
+    admin_layout
+    "column name"
+    id
+    "column name"
+    nome
+    "column name"
+    priority
+    "column name"
+    profilo
+}
+
+"unique or primary key constraints on table \"tokens\""
+enum tokens_constraint {
+    "unique or primary key constraint on columns \"identifier\", \"token\""
+    tokens_pkey
+}
+
+"select columns of table \"tokens\""
+enum tokens_select_column {
+    "column name"
+    expires
+    "column name"
+    identifier
+    "column name"
+    token
+}
+
+"update columns of table \"tokens\""
+enum tokens_update_column {
+    "column name"
+    expires
+    "column name"
+    identifier
+    "column name"
+    token
+}
+
+"unique or primary key constraints on table \"users\""
+enum users_constraint {
+    "unique or primary key constraint on columns \"istruttore_id\""
+    users_istruttore_id_key
+    "unique or primary key constraint on columns \"id\""
+    users_pkey
+    "unique or primary key constraint on columns \"username\""
+    users_username_key
+}
+
+"select columns of table \"users\""
+enum users_select_column {
+    "column name"
+    created_at
+    "column name"
+    deleted_at
+    "column name"
+    email
+    "column name"
+    id
+    "column name"
+    istruttore_id
+    "column name"
+    nome
+    "column name"
+    password
+    "column name"
+    updated_at
+    "column name"
+    username
+}
+
+"update columns of table \"users\""
+enum users_update_column {
+    "column name"
+    created_at
+    "column name"
+    deleted_at
+    "column name"
+    email
+    "column name"
+    id
+    "column name"
+    istruttore_id
+    "column name"
+    nome
+    "column name"
+    password
+    "column name"
+    updated_at
+    "column name"
+    username
+}
+
+scalar date
+
+scalar jsonb
+
+scalar numeric
+
+scalar timestamptz
+
+scalar uuid
+
+"Boolean expression to compare columns of type \"Boolean\". All fields are combined with logical 'AND'."
+input Boolean_comparison_exp {
+    _eq: Boolean
+    _gt: Boolean
+    _gte: Boolean
+    _in: [Boolean!]
+    _is_null: Boolean
+    _lt: Boolean
+    _lte: Boolean
+    _neq: Boolean
+    _nin: [Boolean!]
+}
+
+"Boolean expression to compare columns of type \"Int\". All fields are combined with logical 'AND'."
+input Int_comparison_exp {
+    _eq: Int
+    _gt: Int
+    _gte: Int
+    _in: [Int!]
+    _is_null: Boolean
+    _lt: Int
+    _lte: Int
+    _neq: Int
+    _nin: [Int!]
+}
+
+"Boolean expression to compare columns of type \"String\". All fields are combined with logical 'AND'."
+input String_comparison_exp {
+    _eq: String
+    _gt: String
+    _gte: String
+    "does the column match the given case-insensitive pattern"
+    _ilike: String
+    _in: [String!]
+    "does the column match the given POSIX regular expression, case insensitive"
+    _iregex: String
+    _is_null: Boolean
+    "does the column match the given pattern"
+    _like: String
+    _lt: String
+    _lte: String
+    _neq: String
+    "does the column NOT match the given case-insensitive pattern"
+    _nilike: String
+    _nin: [String!]
+    "does the column NOT match the given POSIX regular expression, case insensitive"
+    _niregex: String
+    "does the column NOT match the given pattern"
+    _nlike: String
+    "does the column NOT match the given POSIX regular expression, case sensitive"
+    _nregex: String
+    "does the column NOT match the given SQL regular expression"
+    _nsimilar: String
+    "does the column match the given POSIX regular expression, case sensitive"
+    _regex: String
+    "does the column match the given SQL regular expression"
+    _similar: String
+}
+
+input attivita_aggregate_bool_exp {
+    count: attivita_aggregate_bool_exp_count
+}
+
+input attivita_aggregate_bool_exp_count {
+    arguments: [attivita_select_column!]
+    distinct: Boolean
+    filter: attivita_bool_exp
+    predicate: Int_comparison_exp!
+}
+
+"order by aggregate values of table \"attivita\""
+input attivita_aggregate_order_by {
+    count: order_by
+    max: attivita_max_order_by
+    min: attivita_min_order_by
+}
+
+"input type for inserting array relation for remote table \"attivita\""
+input attivita_arr_rel_insert_input {
+    data: [attivita_insert_input!]!
+    "upsert condition"
+    on_conflict: attivita_on_conflict
+}
+
+"Boolean expression to filter rows from the table \"attivita\". All fields are combined with a logical 'AND'."
+input attivita_bool_exp {
+    _and: [attivita_bool_exp!]
+    _not: attivita_bool_exp
+    _or: [attivita_bool_exp!]
+    corso: corsi_bool_exp
+    corso_id: uuid_comparison_exp
+    data_fine: String_comparison_exp
+    data_inizio: String_comparison_exp
+    descrizione: String_comparison_exp
+    gruppo: gruppi_bool_exp
+    gruppo_id: uuid_comparison_exp
+    id: uuid_comparison_exp
+    luogo: String_comparison_exp
+    ruoli: ruoli_attivita_bool_exp
+    ruoli_aggregate: ruoli_attivita_aggregate_bool_exp
+}
+
+"input type for inserting data into table \"attivita\""
+input attivita_insert_input {
+    corso: corsi_obj_rel_insert_input
+    corso_id: uuid
+    data_fine: String
+    data_inizio: String
+    descrizione: String
+    gruppo: gruppi_obj_rel_insert_input
+    gruppo_id: uuid
+    id: uuid
+    luogo: String
+    ruoli: ruoli_attivita_arr_rel_insert_input
+}
+
+"order by max() on columns of table \"attivita\""
+input attivita_max_order_by {
+    corso_id: order_by
+    data_fine: order_by
+    data_inizio: order_by
+    descrizione: order_by
+    gruppo_id: order_by
+    id: order_by
+    luogo: order_by
+}
+
+"order by min() on columns of table \"attivita\""
+input attivita_min_order_by {
+    corso_id: order_by
+    data_fine: order_by
+    data_inizio: order_by
+    descrizione: order_by
+    gruppo_id: order_by
+    id: order_by
+    luogo: order_by
+}
+
+"input type for inserting object relation for remote table \"attivita\""
+input attivita_obj_rel_insert_input {
+    data: attivita_insert_input!
+    "upsert condition"
+    on_conflict: attivita_on_conflict
+}
+
+"on_conflict condition type for table \"attivita\""
+input attivita_on_conflict {
+    constraint: attivita_constraint!
+    update_columns: [attivita_update_column!]! = []
+    where: attivita_bool_exp
+}
+
+"Ordering options when selecting data from \"attivita\"."
+input attivita_order_by {
+    corso: corsi_order_by
+    corso_id: order_by
+    data_fine: order_by
+    data_inizio: order_by
+    descrizione: order_by
+    gruppo: gruppi_order_by
+    gruppo_id: order_by
+    id: order_by
+    luogo: order_by
+    ruoli_aggregate: ruoli_attivita_aggregate_order_by
+}
+
+"primary key columns input for table: attivita"
+input attivita_pk_columns_input {
+    id: uuid!
+}
+
+"input type for updating data in table \"attivita\""
+input attivita_set_input {
+    corso_id: uuid
+    data_fine: String
+    data_inizio: String
+    descrizione: String
+    gruppo_id: uuid
+    id: uuid
+    luogo: String
+}
+
+"Streaming cursor of the table \"attivita\""
+input attivita_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: attivita_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input attivita_stream_cursor_value_input {
+    corso_id: uuid
+    data_fine: String
+    data_inizio: String
+    descrizione: String
+    gruppo_id: uuid
+    id: uuid
+    luogo: String
+}
+
+input attivita_updates {
+    "sets the columns of the filtered rows to the given values"
+    _set: attivita_set_input
+    "filter the rows which have to be updated"
+    where: attivita_bool_exp!
+}
+
+"Boolean expression to filter rows from the table \"corsi\". All fields are combined with a logical 'AND'."
+input corsi_bool_exp {
+    _and: [corsi_bool_exp!]
+    _not: corsi_bool_exp
+    _or: [corsi_bool_exp!]
+    anno: String_comparison_exp
+    descrizione: String_comparison_exp
+    fine_iscrizioni: String_comparison_exp
+    id: uuid_comparison_exp
+    inizio_iscrizioni: String_comparison_exp
+    moduli: attivita_bool_exp
+    quota: String_comparison_exp
+    ruoli: ruoli_corsi_bool_exp
+    ruoli_aggregate: ruoli_corsi_aggregate_bool_exp
+    specialita: String_comparison_exp
+}
+
+"input type for inserting data into table \"corsi\""
+input corsi_insert_input {
+    anno: String
+    descrizione: String
+    fine_iscrizioni: String
+    id: uuid
+    inizio_iscrizioni: String
+    moduli: attivita_obj_rel_insert_input
+    quota: String
+    ruoli: ruoli_corsi_arr_rel_insert_input
+    specialita: String
+}
+
+"input type for inserting object relation for remote table \"corsi\""
+input corsi_obj_rel_insert_input {
+    data: corsi_insert_input!
+    "upsert condition"
+    on_conflict: corsi_on_conflict
+}
+
+"on_conflict condition type for table \"corsi\""
+input corsi_on_conflict {
+    constraint: corsi_constraint!
+    update_columns: [corsi_update_column!]! = []
+    where: corsi_bool_exp
+}
+
+"Ordering options when selecting data from \"corsi\"."
+input corsi_order_by {
+    anno: order_by
+    descrizione: order_by
+    fine_iscrizioni: order_by
+    id: order_by
+    inizio_iscrizioni: order_by
+    moduli: attivita_order_by
+    quota: order_by
+    ruoli_aggregate: ruoli_corsi_aggregate_order_by
+    specialita: order_by
+}
+
+"primary key columns input for table: corsi"
+input corsi_pk_columns_input {
+    id: uuid!
+}
+
+"input type for updating data in table \"corsi\""
+input corsi_set_input {
+    anno: String
+    descrizione: String
+    fine_iscrizioni: String
+    id: uuid
+    inizio_iscrizioni: String
+    quota: String
+    specialita: String
+}
+
+"Streaming cursor of the table \"corsi\""
+input corsi_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: corsi_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input corsi_stream_cursor_value_input {
+    anno: String
+    descrizione: String
+    fine_iscrizioni: String
+    id: uuid
+    inizio_iscrizioni: String
+    quota: String
+    specialita: String
+}
+
+input corsi_updates {
+    "sets the columns of the filtered rows to the given values"
+    _set: corsi_set_input
+    "filter the rows which have to be updated"
+    where: corsi_bool_exp!
+}
+
+"Boolean expression to compare columns of type \"date\". All fields are combined with logical 'AND'."
+input date_comparison_exp {
+    _eq: date
+    _gt: date
+    _gte: date
+    _in: [date!]
+    _is_null: Boolean
+    _lt: date
+    _lte: date
+    _neq: date
+    _nin: [date!]
+}
+
+"append existing jsonb value of filtered columns with new jsonb value"
+input gruppi_append_input {
+    sezioni_cai: jsonb
+}
+
+"Boolean expression to filter rows from the table \"gruppi\". All fields are combined with a logical 'AND'."
+input gruppi_bool_exp {
+    _and: [gruppi_bool_exp!]
+    _not: gruppi_bool_exp
+    _or: [gruppi_bool_exp!]
+    ambito: String_comparison_exp
+    attivita: attivita_bool_exp
+    attivita_aggregate: attivita_aggregate_bool_exp
+    created_at: timestamptz_comparison_exp
+    deleted_at: timestamptz_comparison_exp
+    id: uuid_comparison_exp
+    nome: String_comparison_exp
+    ruoli: ruoli_gruppi_bool_exp
+    ruoli_aggregate: ruoli_gruppi_aggregate_bool_exp
+    sezioni_cai: jsonb_comparison_exp
+    tipo: String_comparison_exp
+    updated_at: timestamptz_comparison_exp
+}
+
+"delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+input gruppi_delete_at_path_input {
+    sezioni_cai: [String!]
+}
+
+"delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+input gruppi_delete_elem_input {
+    sezioni_cai: Int
+}
+
+"delete key/value pair or string element. key/value pairs are matched based on their key value"
+input gruppi_delete_key_input {
+    sezioni_cai: String
+}
+
+"input type for inserting data into table \"gruppi\""
+input gruppi_insert_input {
+    ambito: String
+    attivita: attivita_arr_rel_insert_input
+    created_at: timestamptz
+    deleted_at: timestamptz
+    id: uuid
+    nome: String
+    ruoli: ruoli_gruppi_arr_rel_insert_input
+    sezioni_cai: jsonb
+    tipo: String
+    updated_at: timestamptz
+}
+
+"input type for inserting object relation for remote table \"gruppi\""
+input gruppi_obj_rel_insert_input {
+    data: gruppi_insert_input!
+    "upsert condition"
+    on_conflict: gruppi_on_conflict
+}
+
+"on_conflict condition type for table \"gruppi\""
+input gruppi_on_conflict {
+    constraint: gruppi_constraint!
+    update_columns: [gruppi_update_column!]! = []
+    where: gruppi_bool_exp
+}
+
+"Ordering options when selecting data from \"gruppi\"."
+input gruppi_order_by {
+    ambito: order_by
+    attivita_aggregate: attivita_aggregate_order_by
+    created_at: order_by
+    deleted_at: order_by
+    id: order_by
+    nome: order_by
+    ruoli_aggregate: ruoli_gruppi_aggregate_order_by
+    sezioni_cai: order_by
+    tipo: order_by
+    updated_at: order_by
+}
+
+"primary key columns input for table: gruppi"
+input gruppi_pk_columns_input {
+    id: uuid!
+}
+
+"prepend existing jsonb value of filtered columns with new jsonb value"
+input gruppi_prepend_input {
+    sezioni_cai: jsonb
+}
+
+"input type for updating data in table \"gruppi\""
+input gruppi_set_input {
+    ambito: String
+    created_at: timestamptz
+    deleted_at: timestamptz
+    id: uuid
+    nome: String
+    sezioni_cai: jsonb
+    tipo: String
+    updated_at: timestamptz
+}
+
+"Streaming cursor of the table \"gruppi\""
+input gruppi_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: gruppi_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input gruppi_stream_cursor_value_input {
+    ambito: String
+    created_at: timestamptz
+    deleted_at: timestamptz
+    id: uuid
+    nome: String
+    sezioni_cai: jsonb
+    tipo: String
+    updated_at: timestamptz
+}
+
+input gruppi_updates {
+    "append existing jsonb value of filtered columns with new jsonb value"
+    _append: gruppi_append_input
+    "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+    _delete_at_path: gruppi_delete_at_path_input
+    "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+    _delete_elem: gruppi_delete_elem_input
+    "delete key/value pair or string element. key/value pairs are matched based on their key value"
+    _delete_key: gruppi_delete_key_input
+    "prepend existing jsonb value of filtered columns with new jsonb value"
+    _prepend: gruppi_prepend_input
+    "sets the columns of the filtered rows to the given values"
+    _set: gruppi_set_input
+    "filter the rows which have to be updated"
+    where: gruppi_bool_exp!
+}
+
+"append existing jsonb value of filtered columns with new jsonb value"
+input istruttori_append_input {
+    specialita: jsonb
+    titoli: jsonb
+}
+
+"Boolean expression to filter rows from the table \"istruttori\". All fields are combined with a logical 'AND'."
+input istruttori_bool_exp {
+    _and: [istruttori_bool_exp!]
+    _not: istruttori_bool_exp
+    _or: [istruttori_bool_exp!]
+    attivita: ruoli_attivita_bool_exp
+    attivita_aggregate: ruoli_attivita_aggregate_bool_exp
+    bollino: String_comparison_exp
+    cellulare: String_comparison_exp
+    codice_fiscale: String_comparison_exp
+    cognome: String_comparison_exp
+    corsi: ruoli_corsi_bool_exp
+    corsi_aggregate: ruoli_corsi_aggregate_bool_exp
+    created_at: timestamptz_comparison_exp
+    data_nascita: String_comparison_exp
+    deleted_at: timestamptz_comparison_exp
+    email: String_comparison_exp
+    iban: String_comparison_exp
+    id: uuid_comparison_exp
+    nome: String_comparison_exp
+    note: String_comparison_exp
+    ruoli: ruoli_gruppi_bool_exp
+    ruoli_aggregate: ruoli_gruppi_aggregate_bool_exp
+    sezione_cai: String_comparison_exp
+    specialita: jsonb_comparison_exp
+    stato: String_comparison_exp
+    titoli: jsonb_comparison_exp
+    updated_at: timestamptz_comparison_exp
+    user: users_bool_exp
+}
+
+"delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+input istruttori_delete_at_path_input {
+    specialita: [String!]
+    titoli: [String!]
+}
+
+"delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+input istruttori_delete_elem_input {
+    specialita: Int
+    titoli: Int
+}
+
+"delete key/value pair or string element. key/value pairs are matched based on their key value"
+input istruttori_delete_key_input {
+    specialita: String
+    titoli: String
+}
+
+"input type for inserting data into table \"istruttori\""
+input istruttori_insert_input {
+    attivita: ruoli_attivita_arr_rel_insert_input
+    bollino: String
+    cellulare: String
+    codice_fiscale: String
+    cognome: String
+    corsi: ruoli_corsi_arr_rel_insert_input
+    created_at: timestamptz
+    data_nascita: String
+    deleted_at: timestamptz
+    email: String
+    iban: String
+    id: uuid
+    nome: String
+    note: String
+    ruoli: ruoli_gruppi_arr_rel_insert_input
+    sezione_cai: String
+    specialita: jsonb
+    stato: String
+    titoli: jsonb
+    updated_at: timestamptz
+    user: users_obj_rel_insert_input
+}
+
+"input type for inserting object relation for remote table \"istruttori\""
+input istruttori_obj_rel_insert_input {
+    data: istruttori_insert_input!
+    "upsert condition"
+    on_conflict: istruttori_on_conflict
+}
+
+"on_conflict condition type for table \"istruttori\""
+input istruttori_on_conflict {
+    constraint: istruttori_constraint!
+    update_columns: [istruttori_update_column!]! = []
+    where: istruttori_bool_exp
+}
+
+"Ordering options when selecting data from \"istruttori\"."
+input istruttori_order_by {
+    attivita_aggregate: ruoli_attivita_aggregate_order_by
+    bollino: order_by
+    cellulare: order_by
+    codice_fiscale: order_by
+    cognome: order_by
+    corsi_aggregate: ruoli_corsi_aggregate_order_by
+    created_at: order_by
+    data_nascita: order_by
+    deleted_at: order_by
+    email: order_by
+    iban: order_by
+    id: order_by
+    nome: order_by
+    note: order_by
+    ruoli_aggregate: ruoli_gruppi_aggregate_order_by
+    sezione_cai: order_by
+    specialita: order_by
+    stato: order_by
+    titoli: order_by
+    updated_at: order_by
+    user: users_order_by
+}
+
+"primary key columns input for table: istruttori"
+input istruttori_pk_columns_input {
+    id: uuid!
+}
+
+"prepend existing jsonb value of filtered columns with new jsonb value"
+input istruttori_prepend_input {
+    specialita: jsonb
+    titoli: jsonb
+}
+
+"input type for updating data in table \"istruttori\""
+input istruttori_set_input {
+    bollino: String
+    cellulare: String
+    codice_fiscale: String
+    cognome: String
+    created_at: timestamptz
+    data_nascita: String
+    deleted_at: timestamptz
+    email: String
+    iban: String
+    id: uuid
+    nome: String
+    note: String
+    sezione_cai: String
+    specialita: jsonb
+    stato: String
+    titoli: jsonb
+    updated_at: timestamptz
+}
+
+"Streaming cursor of the table \"istruttori\""
+input istruttori_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: istruttori_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input istruttori_stream_cursor_value_input {
+    bollino: String
+    cellulare: String
+    codice_fiscale: String
+    cognome: String
+    created_at: timestamptz
+    data_nascita: String
+    deleted_at: timestamptz
+    email: String
+    iban: String
+    id: uuid
+    nome: String
+    note: String
+    sezione_cai: String
+    specialita: jsonb
+    stato: String
+    titoli: jsonb
+    updated_at: timestamptz
+}
+
+input istruttori_updates {
+    "append existing jsonb value of filtered columns with new jsonb value"
+    _append: istruttori_append_input
+    "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+    _delete_at_path: istruttori_delete_at_path_input
+    "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+    _delete_elem: istruttori_delete_elem_input
+    "delete key/value pair or string element. key/value pairs are matched based on their key value"
+    _delete_key: istruttori_delete_key_input
+    "prepend existing jsonb value of filtered columns with new jsonb value"
+    _prepend: istruttori_prepend_input
+    "sets the columns of the filtered rows to the given values"
+    _set: istruttori_set_input
+    "filter the rows which have to be updated"
+    where: istruttori_bool_exp!
+}
+
+input jsonb_cast_exp {
+    String: String_comparison_exp
+}
+
+"Boolean expression to compare columns of type \"jsonb\". All fields are combined with logical 'AND'."
+input jsonb_comparison_exp {
+    _cast: jsonb_cast_exp
+    "is the column contained in the given json value"
+    _contained_in: jsonb
+    "does the column contain the given json value at the top level"
+    _contains: jsonb
+    _eq: jsonb
+    _gt: jsonb
+    _gte: jsonb
+    "does the string exist as a top-level key in the column"
+    _has_key: String
+    "do all of these strings exist as top-level keys in the column"
+    _has_keys_all: [String!]
+    "do any of these strings exist as top-level keys in the column"
+    _has_keys_any: [String!]
+    _in: [jsonb!]
+    _is_null: Boolean
+    _lt: jsonb
+    _lte: jsonb
+    _neq: jsonb
+    _nin: [jsonb!]
+}
+
+"Boolean expression to compare columns of type \"numeric\". All fields are combined with logical 'AND'."
+input numeric_comparison_exp {
+    _eq: numeric
+    _gt: numeric
+    _gte: numeric
+    _in: [numeric!]
+    _is_null: Boolean
+    _lt: numeric
+    _lte: numeric
+    _neq: numeric
+    _nin: [numeric!]
+}
+
+input ruoli_attivita_aggregate_bool_exp {
+    count: ruoli_attivita_aggregate_bool_exp_count
+}
+
+input ruoli_attivita_aggregate_bool_exp_count {
+    arguments: [ruoli_attivita_select_column!]
+    distinct: Boolean
+    filter: ruoli_attivita_bool_exp
+    predicate: Int_comparison_exp!
+}
+
+"order by aggregate values of table \"ruoli_attivita\""
+input ruoli_attivita_aggregate_order_by {
+    count: order_by
+    max: ruoli_attivita_max_order_by
+    min: ruoli_attivita_min_order_by
+}
+
+"append existing jsonb value of filtered columns with new jsonb value"
+input ruoli_attivita_append_input {
+    profilo: jsonb
+}
+
+"input type for inserting array relation for remote table \"ruoli_attivita\""
+input ruoli_attivita_arr_rel_insert_input {
+    data: [ruoli_attivita_insert_input!]!
+    "upsert condition"
+    on_conflict: ruoli_attivita_on_conflict
+}
+
+"Boolean expression to filter rows from the table \"ruoli_attivita\". All fields are combined with a logical 'AND'."
+input ruoli_attivita_bool_exp {
+    _and: [ruoli_attivita_bool_exp!]
+    _not: ruoli_attivita_bool_exp
+    _or: [ruoli_attivita_bool_exp!]
+    attivita: attivita_bool_exp
+    attivita_id: uuid_comparison_exp
+    istruttore: istruttori_bool_exp
+    istruttore_id: uuid_comparison_exp
+    profilo: jsonb_comparison_exp
+}
+
+"delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+input ruoli_attivita_delete_at_path_input {
+    profilo: [String!]
+}
+
+"delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+input ruoli_attivita_delete_elem_input {
+    profilo: Int
+}
+
+"delete key/value pair or string element. key/value pairs are matched based on their key value"
+input ruoli_attivita_delete_key_input {
+    profilo: String
+}
+
+"input type for inserting data into table \"ruoli_attivita\""
+input ruoli_attivita_insert_input {
+    attivita: attivita_obj_rel_insert_input
+    attivita_id: uuid
+    istruttore: istruttori_obj_rel_insert_input
+    istruttore_id: uuid
+    profilo: jsonb
+}
+
+"order by max() on columns of table \"ruoli_attivita\""
+input ruoli_attivita_max_order_by {
+    attivita_id: order_by
+    istruttore_id: order_by
+}
+
+"order by min() on columns of table \"ruoli_attivita\""
+input ruoli_attivita_min_order_by {
+    attivita_id: order_by
+    istruttore_id: order_by
+}
+
+"on_conflict condition type for table \"ruoli_attivita\""
+input ruoli_attivita_on_conflict {
+    constraint: ruoli_attivita_constraint!
+    update_columns: [ruoli_attivita_update_column!]! = []
+    where: ruoli_attivita_bool_exp
+}
+
+"Ordering options when selecting data from \"ruoli_attivita\"."
+input ruoli_attivita_order_by {
+    attivita: attivita_order_by
+    attivita_id: order_by
+    istruttore: istruttori_order_by
+    istruttore_id: order_by
+    profilo: order_by
+}
+
+"primary key columns input for table: ruoli_attivita"
+input ruoli_attivita_pk_columns_input {
+    attivita_id: uuid!
+    istruttore_id: uuid!
+    profilo: jsonb!
+}
+
+"prepend existing jsonb value of filtered columns with new jsonb value"
+input ruoli_attivita_prepend_input {
+    profilo: jsonb
+}
+
+"input type for updating data in table \"ruoli_attivita\""
+input ruoli_attivita_set_input {
+    attivita_id: uuid
+    istruttore_id: uuid
+    profilo: jsonb
+}
+
+"Streaming cursor of the table \"ruoli_attivita\""
+input ruoli_attivita_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: ruoli_attivita_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input ruoli_attivita_stream_cursor_value_input {
+    attivita_id: uuid
+    istruttore_id: uuid
+    profilo: jsonb
+}
+
+input ruoli_attivita_updates {
+    "append existing jsonb value of filtered columns with new jsonb value"
+    _append: ruoli_attivita_append_input
+    "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+    _delete_at_path: ruoli_attivita_delete_at_path_input
+    "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+    _delete_elem: ruoli_attivita_delete_elem_input
+    "delete key/value pair or string element. key/value pairs are matched based on their key value"
+    _delete_key: ruoli_attivita_delete_key_input
+    "prepend existing jsonb value of filtered columns with new jsonb value"
+    _prepend: ruoli_attivita_prepend_input
+    "sets the columns of the filtered rows to the given values"
+    _set: ruoli_attivita_set_input
+    "filter the rows which have to be updated"
+    where: ruoli_attivita_bool_exp!
+}
+
+"Boolean expression to filter rows from the table \"ruoli\". All fields are combined with a logical 'AND'."
+input ruoli_bool_exp {
+    _and: [ruoli_bool_exp!]
+    _not: ruoli_bool_exp
+    _or: [ruoli_bool_exp!]
+    admin_layout: Boolean_comparison_exp
+    id: uuid_comparison_exp
+    istruttori: ruoli_gruppi_bool_exp
+    istruttori_aggregate: ruoli_gruppi_aggregate_bool_exp
+    nome: String_comparison_exp
+    priority: numeric_comparison_exp
+    profilo: String_comparison_exp
+}
+
+input ruoli_corsi_aggregate_bool_exp {
+    count: ruoli_corsi_aggregate_bool_exp_count
+}
+
+input ruoli_corsi_aggregate_bool_exp_count {
+    arguments: [ruoli_corsi_select_column!]
+    distinct: Boolean
+    filter: ruoli_corsi_bool_exp
+    predicate: Int_comparison_exp!
+}
+
+"order by aggregate values of table \"ruoli_corsi\""
+input ruoli_corsi_aggregate_order_by {
+    count: order_by
+    max: ruoli_corsi_max_order_by
+    min: ruoli_corsi_min_order_by
+}
+
+"append existing jsonb value of filtered columns with new jsonb value"
+input ruoli_corsi_append_input {
+    profilo: jsonb
+}
+
+"input type for inserting array relation for remote table \"ruoli_corsi\""
+input ruoli_corsi_arr_rel_insert_input {
+    data: [ruoli_corsi_insert_input!]!
+    "upsert condition"
+    on_conflict: ruoli_corsi_on_conflict
+}
+
+"Boolean expression to filter rows from the table \"ruoli_corsi\". All fields are combined with a logical 'AND'."
+input ruoli_corsi_bool_exp {
+    _and: [ruoli_corsi_bool_exp!]
+    _not: ruoli_corsi_bool_exp
+    _or: [ruoli_corsi_bool_exp!]
+    corso: corsi_bool_exp
+    corso_id: uuid_comparison_exp
+    istruttore: istruttori_bool_exp
+    istruttore_id: uuid_comparison_exp
+    profilo: jsonb_comparison_exp
+}
+
+"delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+input ruoli_corsi_delete_at_path_input {
+    profilo: [String!]
+}
+
+"delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+input ruoli_corsi_delete_elem_input {
+    profilo: Int
+}
+
+"delete key/value pair or string element. key/value pairs are matched based on their key value"
+input ruoli_corsi_delete_key_input {
+    profilo: String
+}
+
+"input type for inserting data into table \"ruoli_corsi\""
+input ruoli_corsi_insert_input {
+    corso: corsi_obj_rel_insert_input
+    corso_id: uuid
+    istruttore: istruttori_obj_rel_insert_input
+    istruttore_id: uuid
+    profilo: jsonb
+}
+
+"order by max() on columns of table \"ruoli_corsi\""
+input ruoli_corsi_max_order_by {
+    corso_id: order_by
+    istruttore_id: order_by
+}
+
+"order by min() on columns of table \"ruoli_corsi\""
+input ruoli_corsi_min_order_by {
+    corso_id: order_by
+    istruttore_id: order_by
+}
+
+"on_conflict condition type for table \"ruoli_corsi\""
+input ruoli_corsi_on_conflict {
+    constraint: ruoli_corsi_constraint!
+    update_columns: [ruoli_corsi_update_column!]! = []
+    where: ruoli_corsi_bool_exp
+}
+
+"Ordering options when selecting data from \"ruoli_corsi\"."
+input ruoli_corsi_order_by {
+    corso: corsi_order_by
+    corso_id: order_by
+    istruttore: istruttori_order_by
+    istruttore_id: order_by
+    profilo: order_by
+}
+
+"primary key columns input for table: ruoli_corsi"
+input ruoli_corsi_pk_columns_input {
+    corso_id: uuid!
+    istruttore_id: uuid!
+    profilo: jsonb!
+}
+
+"prepend existing jsonb value of filtered columns with new jsonb value"
+input ruoli_corsi_prepend_input {
+    profilo: jsonb
+}
+
+"input type for updating data in table \"ruoli_corsi\""
+input ruoli_corsi_set_input {
+    corso_id: uuid
+    istruttore_id: uuid
+    profilo: jsonb
+}
+
+"Streaming cursor of the table \"ruoli_corsi\""
+input ruoli_corsi_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: ruoli_corsi_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input ruoli_corsi_stream_cursor_value_input {
+    corso_id: uuid
+    istruttore_id: uuid
+    profilo: jsonb
+}
+
+input ruoli_corsi_updates {
+    "append existing jsonb value of filtered columns with new jsonb value"
+    _append: ruoli_corsi_append_input
+    "delete the field or element with specified path (for JSON arrays, negative integers count from the end)"
+    _delete_at_path: ruoli_corsi_delete_at_path_input
+    "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array"
+    _delete_elem: ruoli_corsi_delete_elem_input
+    "delete key/value pair or string element. key/value pairs are matched based on their key value"
+    _delete_key: ruoli_corsi_delete_key_input
+    "prepend existing jsonb value of filtered columns with new jsonb value"
+    _prepend: ruoli_corsi_prepend_input
+    "sets the columns of the filtered rows to the given values"
+    _set: ruoli_corsi_set_input
+    "filter the rows which have to be updated"
+    where: ruoli_corsi_bool_exp!
+}
+
+input ruoli_gruppi_aggregate_bool_exp {
+    count: ruoli_gruppi_aggregate_bool_exp_count
+}
+
+input ruoli_gruppi_aggregate_bool_exp_count {
+    arguments: [ruoli_gruppi_select_column!]
+    distinct: Boolean
+    filter: ruoli_gruppi_bool_exp
+    predicate: Int_comparison_exp!
+}
+
+"order by aggregate values of table \"ruoli_gruppi\""
+input ruoli_gruppi_aggregate_order_by {
+    count: order_by
+    max: ruoli_gruppi_max_order_by
+    min: ruoli_gruppi_min_order_by
+}
+
+"input type for inserting array relation for remote table \"ruoli_gruppi\""
+input ruoli_gruppi_arr_rel_insert_input {
+    data: [ruoli_gruppi_insert_input!]!
+    "upsert condition"
+    on_conflict: ruoli_gruppi_on_conflict
+}
+
+"Boolean expression to filter rows from the table \"ruoli_gruppi\". All fields are combined with a logical 'AND'."
+input ruoli_gruppi_bool_exp {
+    _and: [ruoli_gruppi_bool_exp!]
+    _not: ruoli_gruppi_bool_exp
+    _or: [ruoli_gruppi_bool_exp!]
+    gruppo: gruppi_bool_exp
+    gruppo_id: uuid_comparison_exp
+    id: uuid_comparison_exp
+    istruttore: istruttori_bool_exp
+    istruttore_id: uuid_comparison_exp
+    ruolo: ruoli_bool_exp
+    ruolo_id: uuid_comparison_exp
+    user: users_bool_exp
+    user_id: uuid_comparison_exp
+}
+
+"input type for inserting data into table \"ruoli_gruppi\""
+input ruoli_gruppi_insert_input {
+    gruppo: gruppi_obj_rel_insert_input
+    gruppo_id: uuid
+    id: uuid
+    istruttore: istruttori_obj_rel_insert_input
+    istruttore_id: uuid
+    ruolo: ruoli_obj_rel_insert_input
+    ruolo_id: uuid
+    user: users_obj_rel_insert_input
+    user_id: uuid
+}
+
+"order by max() on columns of table \"ruoli_gruppi\""
+input ruoli_gruppi_max_order_by {
+    gruppo_id: order_by
+    id: order_by
+    istruttore_id: order_by
+    ruolo_id: order_by
+    user_id: order_by
+}
+
+"order by min() on columns of table \"ruoli_gruppi\""
+input ruoli_gruppi_min_order_by {
+    gruppo_id: order_by
+    id: order_by
+    istruttore_id: order_by
+    ruolo_id: order_by
+    user_id: order_by
+}
+
+"on_conflict condition type for table \"ruoli_gruppi\""
+input ruoli_gruppi_on_conflict {
+    constraint: ruoli_gruppi_constraint!
+    update_columns: [ruoli_gruppi_update_column!]! = []
+    where: ruoli_gruppi_bool_exp
+}
+
+"Ordering options when selecting data from \"ruoli_gruppi\"."
+input ruoli_gruppi_order_by {
+    gruppo: gruppi_order_by
+    gruppo_id: order_by
+    id: order_by
+    istruttore: istruttori_order_by
+    istruttore_id: order_by
+    ruolo: ruoli_order_by
+    ruolo_id: order_by
+    user: users_order_by
+    user_id: order_by
+}
+
+"primary key columns input for table: ruoli_gruppi"
+input ruoli_gruppi_pk_columns_input {
+    id: uuid!
+}
+
+"input type for updating data in table \"ruoli_gruppi\""
+input ruoli_gruppi_set_input {
+    gruppo_id: uuid
+    id: uuid
+    istruttore_id: uuid
+    ruolo_id: uuid
+    user_id: uuid
+}
+
+"Streaming cursor of the table \"ruoli_gruppi\""
+input ruoli_gruppi_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: ruoli_gruppi_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input ruoli_gruppi_stream_cursor_value_input {
+    gruppo_id: uuid
+    id: uuid
+    istruttore_id: uuid
+    ruolo_id: uuid
+    user_id: uuid
+}
+
+input ruoli_gruppi_updates {
+    "sets the columns of the filtered rows to the given values"
+    _set: ruoli_gruppi_set_input
+    "filter the rows which have to be updated"
+    where: ruoli_gruppi_bool_exp!
+}
+
+"input type for incrementing numeric columns in table \"ruoli\""
+input ruoli_inc_input {
+    priority: numeric
+}
+
+"input type for inserting data into table \"ruoli\""
+input ruoli_insert_input {
+    admin_layout: Boolean
+    id: uuid
+    istruttori: ruoli_gruppi_arr_rel_insert_input
+    nome: String
+    priority: numeric
+    profilo: String
+}
+
+"input type for inserting object relation for remote table \"ruoli\""
+input ruoli_obj_rel_insert_input {
+    data: ruoli_insert_input!
+    "upsert condition"
+    on_conflict: ruoli_on_conflict
+}
+
+"on_conflict condition type for table \"ruoli\""
+input ruoli_on_conflict {
+    constraint: ruoli_constraint!
+    update_columns: [ruoli_update_column!]! = []
+    where: ruoli_bool_exp
+}
+
+"Ordering options when selecting data from \"ruoli\"."
+input ruoli_order_by {
+    admin_layout: order_by
+    id: order_by
+    istruttori_aggregate: ruoli_gruppi_aggregate_order_by
+    nome: order_by
+    priority: order_by
+    profilo: order_by
+}
+
+"primary key columns input for table: ruoli"
+input ruoli_pk_columns_input {
+    id: uuid!
+}
+
+"input type for updating data in table \"ruoli\""
+input ruoli_set_input {
+    admin_layout: Boolean
+    id: uuid
+    nome: String
+    priority: numeric
+    profilo: String
+}
+
+"Streaming cursor of the table \"ruoli\""
+input ruoli_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: ruoli_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input ruoli_stream_cursor_value_input {
+    admin_layout: Boolean
+    id: uuid
+    nome: String
+    priority: numeric
+    profilo: String
+}
+
+input ruoli_updates {
+    "increments the numeric columns with given value of the filtered values"
+    _inc: ruoli_inc_input
+    "sets the columns of the filtered rows to the given values"
+    _set: ruoli_set_input
+    "filter the rows which have to be updated"
+    where: ruoli_bool_exp!
+}
+
+"Boolean expression to compare columns of type \"timestamptz\". All fields are combined with logical 'AND'."
+input timestamptz_comparison_exp {
+    _eq: timestamptz
+    _gt: timestamptz
+    _gte: timestamptz
+    _in: [timestamptz!]
+    _is_null: Boolean
+    _lt: timestamptz
+    _lte: timestamptz
+    _neq: timestamptz
+    _nin: [timestamptz!]
+}
+
+"Boolean expression to filter rows from the table \"tokens\". All fields are combined with a logical 'AND'."
+input tokens_bool_exp {
+    _and: [tokens_bool_exp!]
+    _not: tokens_bool_exp
+    _or: [tokens_bool_exp!]
+    expires: date_comparison_exp
+    identifier: String_comparison_exp
+    token: String_comparison_exp
+}
+
+"input type for inserting data into table \"tokens\""
+input tokens_insert_input {
+    expires: date
+    identifier: String
+    token: String
+}
+
+"on_conflict condition type for table \"tokens\""
+input tokens_on_conflict {
+    constraint: tokens_constraint!
+    update_columns: [tokens_update_column!]! = []
+    where: tokens_bool_exp
+}
+
+"Ordering options when selecting data from \"tokens\"."
+input tokens_order_by {
+    expires: order_by
+    identifier: order_by
+    token: order_by
+}
+
+"primary key columns input for table: tokens"
+input tokens_pk_columns_input {
+    identifier: String!
+    token: String!
+}
+
+"input type for updating data in table \"tokens\""
+input tokens_set_input {
+    expires: date
+    identifier: String
+    token: String
+}
+
+"Streaming cursor of the table \"tokens\""
+input tokens_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: tokens_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input tokens_stream_cursor_value_input {
+    expires: date
+    identifier: String
+    token: String
+}
+
+input tokens_updates {
+    "sets the columns of the filtered rows to the given values"
+    _set: tokens_set_input
+    "filter the rows which have to be updated"
+    where: tokens_bool_exp!
+}
+
+"Boolean expression to filter rows from the table \"users\". All fields are combined with a logical 'AND'."
+input users_bool_exp {
+    _and: [users_bool_exp!]
+    _not: users_bool_exp
+    _or: [users_bool_exp!]
+    created_at: timestamptz_comparison_exp
+    deleted_at: timestamptz_comparison_exp
+    email: String_comparison_exp
+    id: uuid_comparison_exp
+    istruttore: istruttori_bool_exp
+    istruttore_id: uuid_comparison_exp
+    nome: String_comparison_exp
+    password: String_comparison_exp
+    ruoli: ruoli_gruppi_bool_exp
+    ruoli_aggregate: ruoli_gruppi_aggregate_bool_exp
+    updated_at: timestamptz_comparison_exp
+    username: String_comparison_exp
+}
+
+"input type for inserting data into table \"users\""
+input users_insert_input {
+    created_at: timestamptz
+    deleted_at: timestamptz
+    email: String
+    id: uuid
+    istruttore: istruttori_obj_rel_insert_input
+    istruttore_id: uuid
+    nome: String
+    password: String
+    ruoli: ruoli_gruppi_arr_rel_insert_input
+    updated_at: timestamptz
+    username: String
+}
+
+"input type for inserting object relation for remote table \"users\""
+input users_obj_rel_insert_input {
+    data: users_insert_input!
+    "upsert condition"
+    on_conflict: users_on_conflict
+}
+
+"on_conflict condition type for table \"users\""
+input users_on_conflict {
+    constraint: users_constraint!
+    update_columns: [users_update_column!]! = []
+    where: users_bool_exp
+}
+
+"Ordering options when selecting data from \"users\"."
+input users_order_by {
+    created_at: order_by
+    deleted_at: order_by
+    email: order_by
+    id: order_by
+    istruttore: istruttori_order_by
+    istruttore_id: order_by
+    nome: order_by
+    password: order_by
+    ruoli_aggregate: ruoli_gruppi_aggregate_order_by
+    updated_at: order_by
+    username: order_by
+}
+
+"primary key columns input for table: users"
+input users_pk_columns_input {
+    id: uuid!
+}
+
+"input type for updating data in table \"users\""
+input users_set_input {
+    created_at: timestamptz
+    deleted_at: timestamptz
+    email: String
+    id: uuid
+    istruttore_id: uuid
+    nome: String
+    password: String
+    updated_at: timestamptz
+    username: String
+}
+
+"Streaming cursor of the table \"users\""
+input users_stream_cursor_input {
+    "Stream column input with initial value"
+    initial_value: users_stream_cursor_value_input!
+    "cursor ordering"
+    ordering: cursor_ordering
+}
+
+"Initial value of the column from where the streaming should start"
+input users_stream_cursor_value_input {
+    created_at: timestamptz
+    deleted_at: timestamptz
+    email: String
+    id: uuid
+    istruttore_id: uuid
+    nome: String
+    password: String
+    updated_at: timestamptz
+    username: String
+}
+
+input users_updates {
+    "sets the columns of the filtered rows to the given values"
+    _set: users_set_input
+    "filter the rows which have to be updated"
+    where: users_bool_exp!
+}
+
+"Boolean expression to compare columns of type \"uuid\". All fields are combined with logical 'AND'."
+input uuid_comparison_exp {
+    _eq: uuid
+    _gt: uuid
+    _gte: uuid
+    _in: [uuid!]
+    _is_null: Boolean
+    _lt: uuid
+    _lte: uuid
+    _neq: uuid
+    _nin: [uuid!]
+}

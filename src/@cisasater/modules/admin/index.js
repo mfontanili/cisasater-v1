@@ -1,0 +1,12 @@
+export * as users from './users';
+export * as roles from './users/ruoli';
+export * as istruttori from './istruttori';
+export * as istruttori_multi from './istruttori/istruttori_multi';
+export * as gruppi from './gruppi';
+export * as gruppi_modal from './gruppi';
+export * as organico_scuola from './gruppi/organico_scuola';
+export * as consiglio_direttivo from './gruppi/consiglio_direttivo';
+export * as attivita from './attivita';
+export * as responsabili from './attivita/responsabili';
+export * as select_gruppo from './attivita/select_gruppo';
+export * as corsi from './corsi';

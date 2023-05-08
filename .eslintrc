@@ -1,0 +1,66 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "rules": {
+    "react/display-name": 0,
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          [ "external", "builtin" ],
+          "internal",
+          [ "sibling", "parent" ],
+          "index"
+        ],
+        "pathGroups": [
+          { "pattern": "@(react|react-native)", "group": "external", "position": "before" },
+          { "pattern": "@mui", "group": "external" },
+          { "pattern": "yup", "group": "external" },
+          { "pattern": "next", "group": "external" },
+          { "pattern": "@cisasater", "group": "internal", "position": "before" },
+          { "pattern": "components", "group": "internal" },
+          { "pattern": "hooks", "group": "internal" },
+          { "pattern": "services", "group": "internal" },
+          { "pattern": "shared", "group": "internal", "position": "after" },
+          { "pattern": "assets", "group": "internal", "position": "after" }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "internal",
+          "react"
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
+}
